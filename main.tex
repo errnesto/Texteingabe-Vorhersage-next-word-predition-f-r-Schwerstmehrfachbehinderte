@@ -1,27 +1,33 @@
-\documentclass{article}
+\documentclass{scrartcl}
+\usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage[left=1in,right=0.8in,top=0.5in,bottom=0.5in,includeheadfoot]{geometry}
 
-\title{Texteingabe Vorhersage (next word predition) für Schwerstmehrfachbehinderte}
+\renewcommand{\baselinestretch}{1.3}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{1.8ex plus 0.2ex minus 0.3ex}
+
+\title{Texteingabe Vorhersage (next word prediction) für Schwerstmehrfachbehinderte}
 \author{Manuel Reich}
 \date{April 2015}
 
 \begin{document}
 
-\input{front-page}
-\newpage
+	\input{front-page}
+	\newpage
 
-\tableofcontents
-\newpage
+	\tableofcontents
+	\newpage
 
-%content
+	%content
 
-\input{content/0-Einletung}
-\input{content/1-Grundlagen}
-\input{content/2-Anforderungen}
-\input{content/3-NLP}
-\input{content/4-Interface}
-\input{content/5-Implementierung}
-\input{content/6-Ergebniss}
-\input{content/7-Resuemee}
+	\input{content/0-Einletung}
+	\input{content/1-Grundlagen}
+	\input{content/2-Anforderungen}
+	\input{content/3-NLP}
+	\input{content/4-Design}	
+	\input{content/5-Implementierung}
+	\input{content/6-Ergebniss}
+	\input{content/7-Resuemee}
 
 \end{document}
