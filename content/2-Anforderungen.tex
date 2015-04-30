@@ -1,25 +1,64 @@
 \section{Anforderungen}
-
-	\subsection{Nutzungsbeispiel}
-    \newpage
     
 	\subsection{Eingabe}
-    	Dank der Vielzahl an möglichen Behinderungen und Einschränkungen gibt es eine mindestens genau so große Zahl an Eingabemethoden und Geräten. In vielen Fällen sind Eingabegerät und Software eng miteinander verbunden oder sogar ein in sich abgeschlossenes System.
+    	Ziel dieser Arbeit ist die Entwicklung eines Prototypen einer Sprachapplikation. Mit dieser Applikation soll ein stummer und motorisch eingeschränkter Nutzer Sätze erzeugen können, die per Sprachausgabe ausgegeben werden können. Dabei soll es nicht nötig sein zu tippen. Sätze werden erzeugt indem ein Wort nach dem anderen aus einer Liste von Wörtern ausgewählt wird. Am Ende wird der Satz bestätigt und ausgegeben. Sollte ein Wort ausversehen zum Satz hinzugefügt worden sein soll es möglich sein diesen Fehler zu korrigieren und das Wort wider aus dem Satz zu entfernen. Das erste Wort in der Liste ist dabei das Wort welches am wahrscheinlichsten als nächstes im aktuellen Satz vorkommen wird. Alle weiteren Wörter sind dann nach absteigender Wahrscheinlichkeit sortiert.
+         
+    	Dieses Kapitel befasst sich mit den Anforderungen bezüglich der Eingabe die sich an die Applikation stellen. Aufgrund der Vielzahl an möglichen Behinderungen und Einschränkungen gibt es eine mindestens genau so große Zahl an Eingabemethoden und Geräten. In vielen Fällen sind Eingabegerät und Software eng miteinander verbunden oder sogar ein in sich abgeschlossenes System.
         
-        Um möglichst viele verschiedene Eingabegeräte zu unterstützen soll die zu entwickelnde Applikation nicht direkt auf spezielle Geräte angepasst werden. Darum werden hier nicht bestimmte Aktionen zur Eingabe beschrieben sondern "Signale" welche dann von verschieden Geräten erzeugt werden können.
+        Um möglichst viele verschiedene Eingabegeräte zu unterstützen soll die zu entwickelnde Applikation nicht direkt auf spezielle Geräte angepasst werden. Darum werden hier nicht bestimmte Aktionen zur Eingabe beschrieben sondern Signale welche dann von verschieden Geräten erzeugt werden können. Ein Signal kann jeder diskreter Code sein der von einem Eingabegerät an die Software gesendet werden kann. Beispielsweise das Drücken einer bestimmten Taste auf einer Tastatur. Für die Entwicklung des Prototypen sollen Signale dann auch über die Tastatur erzeugt werden. Es ist auch denkbar komplizierte Eingabemethoden zu implementieren um die tatsächliche Nutzerfreundlichkeit besser darzusetllen. Schließlich ist das Tippen einer Taste doch sehr viel einfacher als z. B. das Betätigen eines Kopfschalters an einem Rollstuhl. 
         
-        Für die Entwicklung des Prototypen können Signale so auch sehr einfach über Tastatureingaben simuliert werden. Es ist auch denkbar komplizierte Eingabemethoden zu simulieren um auch die tatsächliche Nutzerfreundlichkeit besser darzusetllen. Schließlich ist das Tippen einer Taste doch sehr viel einfacher als z.B. das Betätigen eines Kopfschalters an einem Rollstuhl. 
+        Da nicht jedes Eingabegerät die gleiche Anzahl an Signalen liefert soll hier ein Minimum von drei diskreten Signalen festgelegt werden. Mit diesen drei Signalen sollen alle Funktionen der Applikation umzusetzen sein. Dabei ist es möglich, dass das gleiche Signal in einem anderen Kontext eine andere Bedeutung hat. Es ist auch vorstellbar, wenn unbedingt nötig, eine weitere Funktion durch Wiederholen des gleichen Signals innerhalb eines gewissen Zeitraums aufzurufen. Diese Einschränkung wäre natürlich für Nutzer von Eingabegeräten welche mehr als drei Signale erzeugen können schnell frustrierend. So soll es möglich sein auf weitere Signale zu reagieren und mit diesen Erleichterungen in der Bedienung der Applikation umzusetzen. Ein Beispiel hierfür wäre eine Liste, die sich über mehrere Zeilen erstreckt. Es ist möglich durch diese mit einem einzigen "weiter" Befehl zu navigieren. Wenn möglich wäre es aber auch wünschenswert eine Zeile nach unten oder eben auch zurück zu navigieren.
         
-        Da nicht jedes Eingabegerät die gleiche Anzahl an Signalen liefert soll hier ein Minimum von drei diskreten Signalen festgelegt werden. Mit diesen drei Signalen sollen alle Funktionen der Applikation umzusetzen sein. Dabei ist es möglich, dass das gleiche Signal in einem anderen Kontext eine andere Bedeutung hat. Es ist auch vorstellbar, wenn unbedingt nötig, eine weitere Funktion durch Wiederholen des gleichen Signals innerhalb eines gewissen Zeitraums aufzurufen.
+        Bei der Betrachtung bestehender Eingabegeräte fallen weitere Anforderungen an die Bedienung der Applikation auf. Es gibt verschiedene Eingabegeräte die zur Steuerung eines Mauszeigers gedacht sind. Meist scheint hier die Bedienung der Maus etwas komplizierter als mit einer klassischen Computermaus. Andere Geräte arbeiten mit verschieden angeordneten großen Tasten, manche bilden diese Tasten auch auf einem Touchscreen ab. Darum sollte es auch möglich sein die Schaltflächen der Applikation klassisch per Maus oder Fingerdruck auswählen zu können. Dabei sollte auf die ungewöhnliche Steuerung des Mauszeigers oder motorische Einschränkungen bei der Bedienung von Touchscreens Rücksicht genommen werden.
         
-        Diese Einschränkung wäre natürlich für Nutzer von Eingabegeräten welche mehr als drei Signale erzeugen können schnell frustrierend. So soll es möglich sein auf weitere Signale zu reagieren und mit diesen Erleichterungen in der Bedienung der Applikation umzusetzen. Ein Beispiel hierfür wäre eine Liste, die sich über mehrere Zeilen erstreckt. Es ist möglich durch diese mit einem einzigen "weiter" Befehl zu navigieren. Wenn möglich wäre es aber auch wünschenswert eine Zeile nach unten oder eben auch zurück zu navigieren.
-        
-        Bei der Betrachtung bestehender Eingabegeräte fallen weitere Anforderungen an die Bedienung der Applikation auf:
-        
-        So gibt es verschiedene Eingabegeräte die zur Steuerung eines Mauszeigers gedacht sind. Meist scheint hier die Bedienung der Maus etwas komplizierter als mit einer klassischen Computermaus. Auch gibt es die verschiedensten Bauweisen von meist großen Tastern oder direkt Touchscreens. Darum sollte es auch möglich sein die Schaltflächen der Applikation klassisch per Maus oder Fingerdruck auswählen zu können. Dabei sollte auf die ungewöhnliche Steuerung des Mauszeigers oder motorische Einschränkungen bei der Bedienung von Touchscreens Rücksicht genommen werden. 
-        
-        Ziel dieser Art von Eingabehandhabung ist zum einen die Konzentration der Arbeit und des Prototypen auf die Sprachanalyse und die visualisierung der Ergebnisse. Zum Anderen aber auch der Versuch die Grundlagen für ein Modulares System zu skizzieren welches auch mit zukünftigen noch nicht existierenden Eingabegeräten funktionieren kann. Ein Beispiel hierfür wäre der bereits erwähnte Mauszeiger der eben nicht nur über eine klassische Maus gesteuert werden kann.
+        Ziel dieser Abstrahierung der Eingabehandhabung ist zum einen die Konzentration der Arbeit und des Prototypen auf die Sprachanalyse und die Visualisierung der Ergebnisse. Zum Anderen aber auch der Versuch die Grundlagen für ein Modulares System zu skizzieren welches auch mit zukünftigen noch nicht existierenden Eingabegeräten funktionieren kann. Ein Beispiel hierfür wäre der bereits erwähnte Mauszeiger der eben nicht nur über eine klassische Maus gesteuert werden kann sondern unter anderem auch mit Trackpad, Trackball oder Trackpoint.
         \newpage
+        
+        
+        
 	\subsection{Kathegorie-auswahl / -erkennung}
-	\subsection{Prediktion}
-	\subsection{Ausgabe}
+    	Da zur Prädiktion von wahrscheinlichen nächsten Wörtern zuerst einmal ein Satzanfang benötigt wird startet man zu Beginn mit einer Kategorieübersicht. Hier sollen die Kategorien auch als Liste dargestellt werden. Basierend auf der Kategorieauswahl soll nun eine Liste von möglichen Satzanfängen oder möglichen ersten Wörtern eines Satzes angezeigt werden. 
+        
+        Durch die enorme Einschränkung der möglichen Eingabesignale kann das navigieren durch lange Listen sehr zeitaufwändig werden. Natürlich stehen im optimalen Fall die benötigten Wörter am Anfang der Liste. Es ist aber zu erwarten, dass es immer wieder Fälle gibt bei denen keine sinnvolle oder hilfreiche Prädiktion gemacht werden kann. Um in diesem Fall immer noch eine einigermaßen überschaubare und sinnvolle Liste erstellen zu können, soll der Wortschatz der Kategorie entsprechend eingeschränkt werden. Dabei ist es denkbar mit Unterkategorien zu arbeiten welche automatisch aufgrund der Vorherigen Sätze bestimmt werden. Diese Unterkategorisierung soll im Hintergrund vom Nutzer unbemerkt stattfinden.
+        
+        Oberkategorien dagegen werden vom Nutzer bewusst und manuell ausgewählt. Auch soll es zu jeder Zeit möglich sein die bestehende Oberkategorien zu wechseln um somit Zugang zu einem anderen Wortschatz zu erhalten.
+        
+        -> irgendwas zur Bestimmung von Kategorien
+        \newpage
+        
+        
+       	\subsection{Ausgabe}
+        
+        -> Oben Satz unten Wörter
+        -> sehr reduziertes interface
+        -> Nach auswahl eines Worts wird neue Liste generiert
+        -> Liste als raster von buttons
+        -> color coding von Wortarten?
+        -> konjugierung nach Eigabe ?
+        -> sprachausgabe nicht teil der Arbeit da trivial
+        -> Applikation in englischer Sprache
+        -> skalierbar aber konzipiert für typische tablets
+           also c.a. DinA4
+        -> "zurück Button" zur Kategorieauswahl auf Listeposition -1
+        -> max 70 Wörter -> alles darüber zu Zeitaufwändig schnelle  
+           Bedienug über kompletter Wortschatz
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
