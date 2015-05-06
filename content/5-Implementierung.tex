@@ -3,6 +3,10 @@
 	\subsection{Wortschatz Verwaltung}
 	\subsection{Kathegorisierung}
 	\subsection{Wortvorhersage}
+    \newpage
     \subsection{User Interface}
-    	 -> Installtion von kivy mit virtualenv
-         -> kv is not a template languge
+    	Zur Installation von kivy in MAC OSX wird auf der offiziellen Seite eine gepackte .app Datei angeboten. Wenn man sich diese genauer ansieht enthält diese eine eigene Python Installation und alle von kivy benötigten Pakete. Allerdings kann man so seine Python Dateien nur mit dieser kivy App ausführen. Ein versprochenes Shellscript welches zumindest einen "kivy" Befehl für die Komandozeile bereitstellen soll fehlt im Downloadverszeichniss. Es war auch nicht möglich diese Funktion von Hand mit hilfe von Symlinks herzustellen.
+        
+        Auch abgesehen von diesen Problemen wäre es wünschenswert kivy in einer eigen virtuellen Python umgebung erstellt von virtualenv mithilfe des Paketmanagers pip zu installieren. Auf diese Weise können weitere für die Applikation benötigten Pakte auch in diese Umgebung installiert werden. Auch war es so einfacher in einem gewohnten Workflow zu bleiben. Die Erwartung, dass ein Paketmanager auch die benötigten Abhängigkeiten eines Paketes installiert wurden schnell enttäuscht. Nach einem Tag lesen von Anleitungen und der mehrmaligem Neuinstallation von verschiedensten Pakten lies sich endlich kivy ohne Fehler installieren.
+        
+        Das kivy Framework bietet neben einem Eventsystem vor allem eine große Sammlung an User Interface Elementen und Layouts. Diese sind normale Python Klassen und können im Code instanziiert werden. Allerdings bietet kivy auch eine eigene Syntax namens kv (oder kivy language) an mithilfe welcher man die Layouts deskriptiv erstellen kann. Die Sprache erinnert ein wenig an eine Mischung aus CSS und die html Template Sprache Haml. So braucht man zu Beginn eine ganze Weile um zu realisieren, dass man in kv zwar auf Python Ausdrücke und Variablen zugreifen kann aber alle Arten von Kontrollfluss wie z. B. Schleifen nicht zur verfügung stehen. So kann eine Liste von Buttons mit der Länge aller gefundenen Wortvorschläge nicht allein in kv beschrieben werden. Als Lösung hierfür wurden in dieser Arbeit eigene .kv Dateien für einzelne Elemente der Nutzeroberfläche erstellt. Diese wird dann in einer klassischen Python Datei zusammengebaut.
