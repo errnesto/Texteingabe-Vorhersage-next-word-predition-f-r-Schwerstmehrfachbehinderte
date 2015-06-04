@@ -23,7 +23,7 @@
 \DeclareFieldFormat{usera}{\texttt{#1}}
 \AtEveryBibitem{%
     \csappto{blx@bbx@\thefield{entrytype}}{% put at end of entry
-        \iffieldundef{usera}{}{\space Artikelnummer: \printfield{usera}}
+        \iffieldundef{usera}{}{\space[Katalog, Artikelnummer: \printfield{usera}]}
     }
 }
 

@@ -78,6 +78,7 @@
   					\centering
   					\includegraphics[width=.8\linewidth]{images/tobiiT15.png}
   					\caption{Talker mit literarischem Interface \parencite{tobii:T15}}
+                    \label{fig:tobiiT15}
 				\end{subfigure}
                 \caption{verschiedene Talker}
 				\label{fig:talker}
@@ -88,10 +89,10 @@
     \subsection{Software für Unterstützte Kommunikation}
     \label{sec:software-examples}
     
-    	Unter Sprachsoftware wird hier das komplette System von Benutzeroberfläche über mögliche Autovervollständigungen und Eingabevorschlägen bis zur Sprachausgabe verstanden. Im speziellen soll hier Software vorgestellt werden, die auf den in \autoref{sec:input-devices} beschriebenen Talkern Anwendung findet. Die Auswahl der Beispiele richtet sich an ihrer Rleveanz für den zu entwickelnden Prototypen. Software deren Funktion den in \autoref{sec:requirements} formulierten Anforderungen nahe kommt.
+    	Unter Sprachsoftware wird hier das komplette System von Benutzeroberfläche über mögliche Autovervollständigungen und Eingabevorschlägen bis zur Sprachausgabe verstanden. Im speziellen soll hier Software vorgestellt werden, die auf den in \autoref{sec:input-devices} beschriebenen \emph{Talkern} Anwendung findet. Die Auswahl der Beispiele richtet sich an ihrer Rleveanz für den zu entwickelnden Prototypen. Software deren Funktion den in \autoref{sec:requirements} formulierten Anforderungen nahe kommt.
         
         \subsubsection*{MetaTalkDE / MetaTalkUS}
-        	\emph{MetaTalk} ist eine iPad App von \emph{Cidar Health Care LLC} für Symbolbasierte Unterstützte Kommunikation.
+        	\emph{MetaTalkDE} ist eine iPad App von \emph{Cidar Health Care LLC} für Symbolbasierte \emph{Unterstützte Kommunikation}.
             
             \begin{figure}[H]
 				\centering
@@ -103,13 +104,13 @@
             
             Auf dem Startbildschirm werden oben in einer Zeile vom Nutzer bereits Ausgewählte Symbole angezeigt. Darunter befindet sich ein Raster mit Symbolen und Kategorien. Durch Auswahl einer Kategorie gelangt man auf einen neuen Bildschirm mit entsprechenden Symbolen.
             Durch Druck auf die Symbolzeile oben werden die gelisteten Symbole gesprochen. 
-            Die Anzahl der Tasten im Raster ist in drei Stufen (5x9, 4x7, 3x5) anpassbar. Beim Anpassen des Rasters wird auch das Vokabular angepasst. Jede Stufe hat auch ein eigenes Vokabular, wobei standartmäßig mehr Tasten auch ein größeres Vokabular bedeuten. Die Vokabulare sind innerhalb der App editierbar und können auch über E-Mail ex- und importiert werden. Die gesamte App bietet viele Möglichkeiten der Personalisierung. So können die Symbole der Tasten ausgetauscht werden, neue Tasten hinzugefügt werden, Tasten mit Farben hinterlegt werden und auch Töne für die Sprachausgabe aufgenommen werden. Nach Auswahl von Personalpronomen werden die Verben in der passenden Form angezeigt. Dazu lassen sich durch langes Drücken auf ein Symbol andere Formen des entsprechenden Wortes anzeigen. Auch lassen sich \emph{Verlinkungen} erstellen, mit denen darauffolgende Symbollisten angezeigt werden.
+            Laut Handbuch \parencite[S. 7 ff]{cidar:metaTalkManual} ist die Anzahl der Tasten im Raster ist in drei Stufen (5x9, 4x7, 3x5) anpassbar. Beim Anpassen des Rasters wird auch das Vokabular angepasst. Jede Stufe hat auch ein eigenes Vokabular, wobei standartmäßig mehr Tasten auch ein größeres Vokabular bedeuten. Die Vokabulare sind innerhalb der App editierbar und können wie auf Seite 20 f erklärt auch über E-Mail ex- und importiert werden. Die gesamte App bietet viele Möglichkeiten der Personalisierung. So können die Symbole der Tasten ausgetauscht werden, neue Tasten hinzugefügt werden, Tasten mit Farben hinterlegt werden und auch Töne für die Sprachausgabe aufgenommen werden (vgl. S.24). Nach Auswahl von Personalpronomen werden die Verben in der passenden Form angezeigt. Dazu lassen sich durch langes Drücken auf ein Symbol andere Formen des entsprechenden Wortes anzeigen. (vgl. S.11 – 14) Auch wird auf Seite 33 erleutert wie sich \emph{Verlinkungen} erstellen lassen, mit denen darauffolgende Symbollisten angezeigt werden.
             
             Da die App auf einem iPad läuft, muss der Nutzer motorisch in der Lage sein diese mit den Händen zu bedienen. Zwar gibt es die oben beschriebenen \emph{Verlinkungen}, jedoch nutzt die App keine Methoden des \emph{Mashine learning}, um die Eingabe durch optimierte Symbollisten zu erleichtern.
             
         \subsubsection*{Tobii Sono Scribe}
         
-        	\emph{Tobii Sono Scribe} ist eine Erweiterung zu der Software \emph{Tobii Communicator}. Die Eingbe ist Textbasiert und hat zwei verschiedene Modi. In einem Modus wird mit einer Liste von vorgeschlagenen Wörtern gearbeitet (\autoref{fig:sonoScribeWords}), in dem anderen wird eine Displaytastatur zur Texteingabe verwendet (\autoref{fig:sonoScribeKeyboard}).
+        	\emph{Tobii Sono Scribe} ist eine Erweiterung zu der Software \emph{Tobii Communicator}. Die Eingbe ist Textbasiert. Das Handbuch \parencite[S. 8]{tobii:sonoScribeManual} beschreibt zwei verschiedene Modi. In einem Modus wird mit einer Liste von vorgeschlagenen Wörtern gearbeitet (\autoref{fig:sonoScribeWords}), in dem anderen wird eine Displaytastatur zur Texteingabe verwendet (\autoref{fig:sonoScribeKeyboard}).
             
             \begin{figure}[H]
 				\centering
@@ -130,9 +131,9 @@
                 \label{fig:sonoScribe}
 			\end{figure}
         	
-            Die Software kann unter Windows und auf den Geräten von \emph{Tobii} installiert werden. Neben dem Enthaltenen Vokabular werden auch verschiedene Listen mit häufig verwendeten Sätzen angeboten. Sowohl das Vokabular als auch die Sätze sind innerhalb der Software editierbar.
+            Die Software kann unter Windows und auf den Geräten von \emph{Tobii}installiert werden. Zum Beispiel auf dem in \autoref{fig:tobiiT15} gezeigtem \emph{T15}. Neben dem Enthaltenen Vokabular werden auch verschiedene Listen mit häufig verwendeten Sätzen angeboten wie, auf S. 15 f des Handbuchs beschrieben wird. Sowohl das die Sätze und wie auf S. 20 ergänzt wird, das Vokabular sind innerhalb der Software editierbar.
             
-            Bei der Eingabe werden mögliche nächste Wörter vorgeschlagen und auch Sätze mit entsprechenden Anfängen aus den gespeicherten Sätzen vorgeschlagen. Im tastaturbasierten Modus werden auch Wortvervollständigungen angeboten. Der Nutzer kann sich auch Listen von Wörtern sortiert nach der Wortart anzeigen lassen ((\autoref{fig:sonoScribeList})
+            Bei der Eingabe werden wie auf S. 15 beschrieben mögliche nächste Wörter vorgeschlagen und auch Sätze mit entsprechenden Anfängen aus den gespeicherten Sätzen vorgeschlagen. Im tastaturbasierten Modus werden auch Wortvervollständigungen angeboten (Siehe S. 22). Auf S. 18 wird erklärt, dass Nutzer sich auch Listen von Wörtern sortiert nach der Wortart anzeigen lassen können ((\autoref{fig:sonoScribeList})
             
             \begin{figure}[H]
   				\centering
@@ -141,8 +142,22 @@
                 \label{fig:sonoScribeList}
 			\end{figure}
             
-			Neben der Sprachausgabe gibt es auch einen Texteditor, einen Mailclienten sowie verschiedne Tools zur Steureung des Windows Betriebssystems. Dazu gehört auch ein PlugIn für den Browser \emph{Mozilla Firefox}. Diese große Anzahl an Funktionionen setzt aber vorraus, dass Nutzer lesen und schreiben können müssen und fähig sind die im Vergleich mit \emph{MetaTalkDE} komplexe Benutzeroberfläche bedienen können. Die Software unsterstützt die Eingabe per Touch, Augensteuerung und sogar durch Taster. 
+			Neben der Sprachausgabe gibt es auch einen Texteditor, einen Mailclienten sowie verschiedne Tools zur Steureung des Windows Betriebssystems. Dazu gehört auch ein PlugIn für den Browser \emph{Mozilla Firefox}. Diese große Anzahl an Funktionionen setzt aber vorraus, dass Nutzer lesen und schreiben können müssen und fähig sind die im Vergleich mit \emph{MetaTalkDE} komplexe Benutzeroberfläche bedienen können. Die Software unsterstützt unter anderem die Eingabe per Touch, Augensteuerung und sogar durch Taster. Bei der Bedienung mit Taster gibt es ein \emph{Scan Raster} nach dem per Tastendruck von Knopf zu Knopf gesprungen wird.
     
-	\subsection{Sprachsoftware in Unterhaltungs- und Massenelektronik}
+	\subsection{Mashine learning Software in für den Massenmarkt}
+    \emph{Mashine learning} zur Wortvorhersage wird nicht nur in der \emph{Unterstützten Kommunikation} angewendet sondern auch in Software für den Massenmarkt. Im folgenden sollen hier kurz drei Beispile vorgestellt werden, die Nutzern Worte zur Eingabe vorschlagen.
+        
+        \subsubsection*{swiftKey}
+        	In einem Artikel für die Webseite \emph{techrepublic.com} beschreibt \cite{techrepublic:swiftKey} die Funktionen der Bildschirmtastatur für Mobile Geräte \emph{swiftKey}. Zuerst erwähnt er, wie Nutzern dank eines lernfähigen Algorythmus Worte vorgeschlagen werden. Im optimalen Fall müsste man also nach eingabe des ersten Wortes gar nicht mehr tippen. Dann beschreibt er die zweite Funktion welche \emph{Flow} genannt wird. Hierbei wird zum Tippen nicht abgesetzt, sondern mit dem Finger von einem Buchstaben zum anderen gewischt. Die Tastatur kann auch so das gewünschte Wort erkennen.
+        
+        \subsubsection*{iOS QuickType}
+        
+        	Die Bildschirmtastatur für \emph{Apple iOS 8} enthält ein Feature mit dem Namen \emph{QuickType}. Die Funktion ist ähnlich zu \emph{swiftKey} auch hier werden beim tippen Worte vorgeschlagen. \emph{Apple} bewirbt auf seiner Webseite, dass die Wortvorschläge Kontextabhängig sind. So wird beschrieben, dass in einem Mailprogramm andere Worte vorgeschlagen werden als in einem Chat mit einem Freund. Außerdem kann die Tastatur laut \cite{apple:quickType} auch eingehenden Text in einer Chatapplikation analysieren und entsprechende Vorschläge für die Antwort machen. Eine Funktion zum tippen ohne abzusetzen gibt es nicht.
+        
+        \subsubsection*{Google Suggest}
+        
+        	Auch \emph{Google} schlägt Nutzern Worte vor, während diese Begriffe in die Suchmaschine eingeben. Dieser Service nennt sich \emph{Google Suggest}. Dies beschreibt \cite{google:suggestIntro} im offiliellen Blog von Google. Außerdem erwähnt sie, dass der Service auch Rechtschreibfehler verbessern kann. In einem anderen Blogeintrag erklärt \cite{google:suggestUpdate} dass \emph{Goggle} 2\% der eingegeben Suchanfragen zusammen mit der IP-Adresse des Nutzers auswertet und aus diesen Daten die Vorschläge generiert.
+    
+    
     
     \newpage
