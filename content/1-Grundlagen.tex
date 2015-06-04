@@ -30,7 +30,7 @@
 				\label{fig:ablenetSingleButtons}
 			\end{figure}
             
-            Eine weitere Ausführung sind \emph{sprechende Tasten}. Diese Taster haben einen Lautsprecher eingebaut und bieten die Möglichkeit eine oder mehrere Sprachnachrichten aufzunehmen. Wenn mehrere Nachrichten aufgenommen werden können, kann die auszugebende Nachricht von einer betreuenden Person voreingestellt werden. Andere Geräte funktionieren nach dem Prinzip: einmal drücken gibt Nachricht Nummer eins aus, zweimal Nachricht Nummer zwei und dreimal Nachricht Nummer drei.
+            Eine weitere Ausführung sind \emph{sprechende Tasten}. Diese Taster haben einen Lautsprecher eingebaut und bieten die Möglichkeit eine oder mehrere Sprachnachrichten aufzunehmen. Wenn mehrere Nachrichten aufgenommen werden können, kann die auszugebende Nachricht von einer betreuenden Person voreingestellt werden. Andere Geräte funktionieren nach dem Prinzip: einmal drücken gibt Nachricht Nummer eins aus, zweimal drücken Nachricht Nummer zwei und dreimal drücken Nachricht Nummer drei.
             
         	Außerdem gibt es Taster mit mehr als einer Taste. Diese sind dann schon zum Anschluss an Computer oder Tablets gedacht und haben häufig einen \emph{USB} oder \emph{Bluetooth} Anschluss. Der Tastenumfang geht dabei von einfachen Geräten mit zwei Tasten bis zu kompletten Computertastaturen.
             
@@ -59,7 +59,7 @@
 		\subsubsection*{Talker}
         	Bei Talkern handelt es sich um Geräte mit denen durch Knopfdruck Sprache ausgegeben werden kann. Es existieren sowohl statische als auch dynamische Systeme. Bei statischen Systemen sind die Knöpfe fest in der Hardware eingebaut. Dynamische Systeme verwenden Touchscreens. Oft werden dafür auch handelsübliche Tablets mit Schutzhüllen und Halterungen verwendet. 
             
-            Diese Systeme können unterschiedlich komplex sein. Einfachere Talker haben ein festes Set an Symbolen welche auf Knopfdruck Sprachnachrichten ausgeben. Dynamische Systeme ermöglichen die Navigation durch verschiedene Symbolgruppen oder arbeiten sogar nur mit Text. Manche ermöglichen auch eine Texteingabe per Tastatur. In \autoref{sec:software-examples} werden verschiedene Softwarelösungen für solche Systeme vorgestellt.
+            Diese Systeme können unterschiedlich komplex sein. Einfachere Talker haben ein festes Set an Symbolen, welche auf Knopfdruck Sprachnachrichten ausgeben. Dynamische Systeme ermöglichen die Navigation durch verschiedene Symbolgruppen oder arbeiten sogar nur mit Text. Manche ermöglichen auch eine Texteingabe per Tastatur. In \autoref{sec:software-examples} werden verschiedene Softwarelösungen für solche Systeme vorgestellt.
             
             \begin{figure}[H]
 				\centering
@@ -88,7 +88,7 @@
     \subsection{Software für Unterstützte Kommunikation}
     \label{sec:software-examples}
     
-    	Unter Sprachsoftware wird hier das komplette System von Benutzeroberfläche über mögliche Autovervollständigungen und Eingabevorschlägen bis zur Sprachausgabe verstanden. Im speziellen soll hier Software vorgestellt werden, die auf den in \autoref{sec:input-devices} beschriebenen Talkern anwendung findet. Die Auswahl der Beispiele richtet sich an ihrer Rleveanz für den zu entwickelnden Prototypen. Software deren Funktion den in \autoref{sec:requirements} formulierten Anforderungen nahe kommt.
+    	Unter Sprachsoftware wird hier das komplette System von Benutzeroberfläche über mögliche Autovervollständigungen und Eingabevorschlägen bis zur Sprachausgabe verstanden. Im speziellen soll hier Software vorgestellt werden, die auf den in \autoref{sec:input-devices} beschriebenen Talkern Anwendung findet. Die Auswahl der Beispiele richtet sich an ihrer Rleveanz für den zu entwickelnden Prototypen. Software deren Funktion den in \autoref{sec:requirements} formulierten Anforderungen nahe kommt.
         
         \subsubsection*{MetaTalkDE / MetaTalkUS}
         	\emph{MetaTalk} ist eine iPad App von \emph{Cidar Health Care LLC} für Symbolbasierte Unterstützte Kommunikation.
@@ -97,25 +97,51 @@
 				\centering
 				\includegraphics[width=.7\linewidth]{images/Metatalk.png}
                 \caption{Schreenshot von MetaTalkDE in der 5x9 Ansicht
-                \parencite[p. 8]{cidar:metaTalkManual}}
+                \parencite[S. 8]{cidar:metaTalkManual}}
 				\label{fig:metatalk}
 			\end{figure}
             
-            Auf dem Startbildschirm werden oben in einer Zeile die Ausgewählten Symbole angezeigt. Darunter befindet sich ein Raster mit Symbolen und Kategorien. Durch Auswahl einer Kategorie gelangt man auf einen neuen Bildschirm mit entsprechenden Symbolen.
-            Durch druck auf die Symbolzeile oben werden die gelisteten Symbole gesprochen. 
-            Die Anzahl der Tasten im Raster ist in drei Stufen (5x9, 4x7, 3x5) anpassbar. Jede Stufe hat auch ein eigenes Vokabular, wobei standartmäsig kleinere Tasten ein größeres Vokabular bedeuten. Die Vokabulare sind innerhalb der App editierbar und können auch über E-Mail exportiert und importiert werden. Die gesammte App bietet viele Möglichkeiten der Personalisierung. So können die Symbole der Tasten ausgetauscht werden, neue Tasten hinzugefügt werden, Tasten mit Farben hinterlegt werden und auch Töne für die Sprachausgabe aufgenommen werden. Nach auswahl von Personalpronomen werden die Verben in der passenden Form angezeigt. Dazu lassen sich durch langes drücken auf ein Symbol andere Formen des entsprechenden Wortes anzeigen. Auch lassen sich \emph{Verlinkungen} erstellen mit denen darauffolgende Symbollisten angeigt werden.
+            Auf dem Startbildschirm werden oben in einer Zeile vom Nutzer bereits Ausgewählte Symbole angezeigt. Darunter befindet sich ein Raster mit Symbolen und Kategorien. Durch Auswahl einer Kategorie gelangt man auf einen neuen Bildschirm mit entsprechenden Symbolen.
+            Durch Druck auf die Symbolzeile oben werden die gelisteten Symbole gesprochen. 
+            Die Anzahl der Tasten im Raster ist in drei Stufen (5x9, 4x7, 3x5) anpassbar. Beim Anpassen des Rasters wird auch das Vokabular angepasst. Jede Stufe hat auch ein eigenes Vokabular, wobei standartmäßig mehr Tasten auch ein größeres Vokabular bedeuten. Die Vokabulare sind innerhalb der App editierbar und können auch über E-Mail ex- und importiert werden. Die gesamte App bietet viele Möglichkeiten der Personalisierung. So können die Symbole der Tasten ausgetauscht werden, neue Tasten hinzugefügt werden, Tasten mit Farben hinterlegt werden und auch Töne für die Sprachausgabe aufgenommen werden. Nach Auswahl von Personalpronomen werden die Verben in der passenden Form angezeigt. Dazu lassen sich durch langes Drücken auf ein Symbol andere Formen des entsprechenden Wortes anzeigen. Auch lassen sich \emph{Verlinkungen} erstellen, mit denen darauffolgende Symbollisten angezeigt werden.
             
-            Da die App auf einem iPad läuft muss diese mit den Händen bedient werden. Zwar gibt es die oben beschriebenen \emph{Verlinkungen} jedoch nutzt die App keine Methoden des \emph{Mashine learning} um die Eingabe durch optimierte Symbollisten zu erleichtern.
+            Da die App auf einem iPad läuft, muss der Nutzer motorisch in der Lage sein diese mit den Händen zu bedienen. Zwar gibt es die oben beschriebenen \emph{Verlinkungen}, jedoch nutzt die App keine Methoden des \emph{Mashine learning}, um die Eingabe durch optimierte Symbollisten zu erleichtern.
             
-        \subsubsection*{Tobii Sonar Scribe}
-    
-
-    
-    \subsection{Verwendung von Sprachsoftware im Schulalltag}
-    
-    Lehrer bereiten Wortschatz für kommende Unterichtstunde vor
-    -> funktioiert gut
-    -> spontane Unterhaltungen schwierig
+        \subsubsection*{Tobii Sono Scribe}
+        
+        	\emph{Tobii Sono Scribe} ist eine Erweiterung zu der Software \emph{Tobii Communicator}. Die Eingbe ist Textbasiert und hat zwei verschiedene Modi. In einem Modus wird mit einer Liste von vorgeschlagenen Wörtern gearbeitet (\autoref{fig:sonoScribeWords}), in dem anderen wird eine Displaytastatur zur Texteingabe verwendet (\autoref{fig:sonoScribeKeyboard}).
+            
+            \begin{figure}[H]
+				\centering
+				\begin{subfigure}{.5\textwidth}
+  					\centering
+  					\includegraphics[width=.8\linewidth]{images/sonoScribeWords.png}
+  					\caption{Wort Modus \parencite[S. 13]{tobii:sonoScribeManual}}
+                    \label{fig:sonoScribeWords}
+                    
+				\end{subfigure}%
+				\begin{subfigure}{.5\textwidth}
+  					\centering
+  					\includegraphics[width=.8\linewidth]{images/SonoScribeKeboard.png}
+  					\caption{Tastatur Modus \parencite[S. 22]{tobii:sonoScribeManual}}
+                    \label{fig:sonoScribeKeyboard}
+				\end{subfigure}
+                \caption{ }
+                \label{fig:sonoScribe}
+			\end{figure}
+        	
+            Die Software kann unter Windows und auf den Geräten von \emph{Tobii} installiert werden. Neben dem Enthaltenen Vokabular werden auch verschiedene Listen mit häufig verwendeten Sätzen angeboten. Sowohl das Vokabular als auch die Sätze sind innerhalb der Software editierbar.
+            
+            Bei der Eingabe werden mögliche nächste Wörter vorgeschlagen und auch Sätze mit entsprechenden Anfängen aus den gespeicherten Sätzen vorgeschlagen. Im tastaturbasierten Modus werden auch Wortvervollständigungen angeboten. Der Nutzer kann sich auch Listen von Wörtern sortiert nach der Wortart anzeigen lassen ((\autoref{fig:sonoScribeList})
+            
+            \begin{figure}[H]
+  				\centering
+  				\includegraphics[width=.5\linewidth]{images/SonoScribeList.png}
+  				\caption{Liste von Nomen \parencite[S. 18]{tobii:sonoScribeManual}}
+                \label{fig:sonoScribeList}
+			\end{figure}
+            
+			Neben der Sprachausgabe gibt es auch einen Texteditor, einen Mailclienten sowie verschiedne Tools zur Steureung des Windows Betriebssystems. Dazu gehört auch ein PlugIn für den Browser \emph{Mozilla Firefox}. Diese große Anzahl an Funktionionen setzt aber vorraus, dass Nutzer lesen und schreiben können müssen und fähig sind die im Vergleich mit \emph{MetaTalkDE} komplexe Benutzeroberfläche bedienen können. Die Software unsterstützt die Eingabe per Touch, Augensteuerung und sogar durch Taster. 
     
 	\subsection{Sprachsoftware in Unterhaltungs- und Massenelektronik}
     

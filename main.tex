@@ -39,11 +39,16 @@
 
 	\input{front-page}
 	\newpage
-
+	
+    %table of contents
+    \pagenumbering{roman}
+    \setcounter{page}{1}
 	\tableofcontents
 	\newpage
 
 	%content
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
 
 	\input{content/0-Einletung}
 	\input{content/1-Grundlagen}
