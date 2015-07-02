@@ -6,9 +6,22 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{float}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{dirtree}
 \usepackage[autostyle]{csquotes}
 \usepackage[backend=biber,style=authoryear,citestyle=authoryear,url]{biblatex}
 \bibliography{library.bib}
+\lstset{
+	language         = Python,
+    showstringspaces = false,
+    basicstyle       = \small\ttfamily\color{magenta},
+    identifierstyle  = \color{black},
+    keywordstyle     = \color{red},
+    stringstyle      = \color{blue},
+    breaklines       = true,
+    xleftmargin      = .1\textwidth
+}
 
 % add custom product-number field to litarute
 \DeclareSourcemap{
@@ -28,6 +41,7 @@
 }
 
 \renewcommand{\baselinestretch}{1.3}
+\renewcommand{\lstlistingname}{Code}
 \setlength{\parindent}{0in}
 \setlength{\parskip}{1.8ex plus 0.2ex minus 0.3ex}
 

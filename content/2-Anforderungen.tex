@@ -7,32 +7,35 @@
          
     	Dieses Kapitel befasst sich mit den Anforderungen bezüglich der Eingabe, die sich an die Applikation stellen. Wie im \autoref{sec:input-devices} beschrieben sind die Eingabemethoden sehr verschieden. In vielen Fällen sind Eingabegerät und Software eng miteinander verbunden oder sogar ein in sich abgeschlossenes System.
         
-        Um möglichst viele verschiedene Eingabegeräte zu unterstützen, soll die zu entwickelnde Applikation nicht direkt auf spezielle Geräte angepasst werden. Darum werden hier nicht bestimmte Aktionen zur Eingabe beschrieben, sondern Signale, welche dann von verschieden Geräten erzeugt werden können. Ein Signal kann jeder diskrete Code sein, der von einem Eingabegerät an die Software gesendet werden kann. Beispielsweise durch das Drücken einer bestimmten Taste auf einer Tastatur. Für die Entwicklung des Prototypen sollen Signale dann auch über die Tastatur erzeugt werden. Es ist auch denkbar, komplizierte Eingabemethoden zu implementieren, um die tatsächliche Nutzerfreundlichkeit besser darzustellen. Schließlich ist das Tippen einer Taste doch sehr viel einfacher als z. B. das Betätigen eines Kopfschalters an einem Rollstuhl. 
+        Um möglichst viele verschiedene Eingabegeräte zu unterstützen, soll die zu entwickelnde Applikation nicht direkt auf spezielle Geräte angepasst werden. Darum werden hier nicht bestimmte Aktionen zur Eingabe beschrieben, sondern Signale, welche dann von verschieden Geräten erzeugt werden können. Ein Signal kann jeder diskrete Code sein, der von einem Eingabegerät an die Software gesendet wird. Beispielsweise durch das Drücken einer bestimmten Taste auf einer Tastatur. Für die Entwicklung des Prototypen sollen Signale dann auch über die Tastatur erzeugt werden. 
         
-        Da nicht jedes Eingabegerät die gleiche Anzahl an Signalen liefert, soll hier ein Minimum von drei diskreten Signalen festgelegt werden. Mit diesen drei Signalen sollen alle Funktionen der Applikation umzusetzen sein. Dabei ist es möglich, dass das gleiche Signal in einem anderen Kontext eine andere Bedeutung hat. Es ist auch vorstellbar, wenn unbedingt nötig, eine weitere Funktion durch Wiederholen des gleichen Signals innerhalb eines gewissen Zeitraums aufzurufen. Diese Einschränkung wäre natürlich für Nutzer von Eingabegeräten, welche mehr als drei Signale erzeugen können, schnell frustrierend. So soll es möglich sein, auf weitere Signale zu reagieren und mit diesen Erleichterungen bei der Bedienung der Applikation umzusetzen. Ein Beispiel hierfür wäre eine Liste, die sich über mehrere Zeilen erstreckt. Es ist möglich durch diese mit einem einzigen "weiter" Befehl zu navigieren. Wenn möglich, wäre es aber auch wünschenswert, eine Zeile nach unten oder eben auch zurück zu navigieren.
+        Da nicht jedes Eingabegerät die gleiche Anzahl an Signalen liefert, soll hier ein Minimum von drei diskreten Signalen festgelegt werden. Mit diesen drei Signalen sollen alle Funktionen der Applikation umzusetzen sein. Dabei ist es möglich, dass das gleiche Signal in einem anderen Kontext eine andere Bedeutung hat. Es ist auch vorstellbar, wenn unbedingt nötig, eine weitere Funktion durch Wiederholen des gleichen Signals innerhalb eines gewissen Zeitraums aufzurufen. 
         
-        Bei der Betrachtung bestehender Eingabegeräte fallen weitere Anforderungen an die Bedienung der Applikation auf. Es gibt verschiedene Eingabegeräte, die zur Steuerung eines Mauszeigers gedacht sind. Meist scheint hier die Bedienung der Maus etwas komplizierter, als mit einer klassischen Computermaus (??????). Andere Geräte arbeiten mit verschieden angeordneten großen Tasten, manche bilden diese Tasten auch auf einem Touchscreen ab. Darum sollte es auch möglich sein, die Schaltflächen der Applikation klassisch per Maus oder Fingerdruck auswählen zu können. Dabei sollte auf die ungewöhnliche Steuerung des Mauszeigers und motorische Einschränkungen bei der Bedienung von Touchscreens Rücksicht genommen werden.
+        Diese Einschränkung wäre natürlich für Nutzer von Eingabegeräten, welche mehr als drei Signale erzeugen können, schnell frustrierend. So soll es möglich sein, auf weitere Signale zu reagieren und mit diesen Erleichterungen bei der Bedienung der Applikation umzusetzen. Ein Beispiel hierfür wäre eine Liste, die sich über mehrere Zeilen erstreckt. Es ist möglich durch diese mit einem einzigen \emph{weiter} Befehl zu navigieren. Wenn möglich, wäre es aber auch wünschenswert, eine Zeile nach unten oder eben auch zurück zu navigieren.
         
-        Ziel dieser Abstrahierung der Eingabehandhabung ist zum einen die Konzentration der Arbeit und des Prototypen auf die Sprachanalyse und die Visualisierung der Ergebnisse. Zum Anderen aber auch der Versuch die Grundlagen für ein modulares System zu skizzieren, welches auch mit zukünftigen noch nicht existierenden Eingabegeräten funktionieren kann. Ein Beispiel hierfür wäre der bereits erwähnte Mauszeiger, der eben nicht nur über eine klassische Maus gesteuert werden kann, sondern unter anderem auch mit Trackpad, Trackball oder Trackpoint.
+        Bei der Betrachtung bestehender Eingabegeräte fallen weitere Anforderungen an die Bedienung der Applikation auf. Es gibt z. B. verschiedene Eingabegeräte für körperlich eingeschränkte Personen, die zur Steuerung eines Mauszeigers gedacht sind. Zum Beispiel die in \autoref{sec:input-devices} beschriebene Augensteuereng. Andere Geräte arbeiten, wie auch in \autoref{sec:input-devices} vorgestellt mit verschieden angeordneten großen Tasten, manche bilden diese Tasten auch auf einem Touchscreen ab. Darum sollte es auch möglich sein, die Schaltflächen der Applikation klassisch per Maus oder Fingerdruck auswählen zu können. Dabei sollte auf die ungewöhnliche Steuerung des Mauszeigers und motorische Einschränkungen bei der Bedienung von Touchscreens Rücksicht genommen werden.
+        
+        Ziel dieser Abstrahierung der Eingabehandhabung ist der Versuch die Grundlagen für ein modulares System zu skizzieren, welches auch mit zukünftigen noch nicht existierenden Eingabegeräten funktionieren kann.
         
     \newpage   
 	\subsection{Kategorieauswahl / -erkennung}
+    \label{sec:requirements_categories}
     
-    	Im folgenden soll der Ansatz einer manuellen Kategorienauswahl mit einer automatischen Kategorienerkennung beschrieben werden. Diese sollen in Kombination dazu beitragen, das Ergebnis der Prädiktion zu verbessen und somit die oben geforderte Bedienung ohne Tastatur möglich machen. Dabei wird auch in Kauf genommen, dass die Applikation eine bestimmte Art der Sprache und Wortwahl vorgibt. So sind wenn notwendig weitere Einschränkungen der erzeugten Sprache denkbar.
+    	Im folgenden soll der Ansatz einer manuellen Kategorienauswahl und einer nachfolgenden automatischen Kategorienerkennung beschrieben werden. Diese sollen in Kombination dazu beitragen, das Ergebnis der Prädiktion zu verbessen und somit die oben geforderte Bedienung ohne Tastatur möglich machen. Dabei wird auch in Kauf genommen, dass die Applikation eine bestimmte Art der Sprache und Wortwahl vorgibt. Dieser Ansatz bietet sich an, da die in \autoref{sec:software-examples} vorgestellte Software auch viel mit Kategorien arbeitet.
         
-    	Da zur Prädiktion von wahrscheinlichen nächsten Wörtern zuerst einmal ein Satzanfang benötigt wird, startet man zu Beginn mit einer Kategorieübersicht. In dieser Übersicht sollen die Kategorien, wie sonst auch die Worte, als Liste dargestellt werden. Basierend auf der Kategorieauswahl wird dann eine Liste von möglichen Satzanfängen oder möglichen ersten Wörtern eines Satzes angezeigt. 
+    	Da zur Prädiktion von wahrscheinlichen nächsten Wörtern zuerst einmal ein Satzanfang benötigt wird, startet man zu Beginn mit einer Kategorieübersicht. In dieser Übersicht sollen die Kategorien, wie sonst auch die Worte, als Liste dargestellt werden. Basierend auf der Kategorieauswahl wird dann eine Liste von möglichen ersten Wörtern eines Satzes angezeigt. 
         
-        Durch die enorme Einschränkung der möglichen Eingabesignale kann das Navigieren durch lange Listen sehr zeitaufwändig werden. Natürlich stehen im optimalen Fall die benötigten Wörter am Anfang der Liste. Es ist aber zu erwarten, dass es immer wieder Fälle gibt, bei denen keine sinnvolle oder hilfreiche Prädiktion gemacht werden können. Um in diesen Fällen immer noch eine einigermaßen überschaubare und sinnvolle Liste erstellen zu können, soll der Wortschatz der Kategorie entsprechend eingeschränkt werden. Dabei ist es denkbar mit Unterkategorien zu arbeiten, welche automatisch aufgrund der vorherigen Sätze bestimmt werden. Diese Unterkategorisierung soll im Hintergrund vom Nutzer unbemerkt stattfinden. 
+        Durch die enorme Einschränkung der möglichen Eingabesignale kann das Navigieren durch lange Listen sehr zeitaufwändig werden. Natürlich stehen im optimalen Fall die benötigten Wörter am Anfang der Liste. Es ist aber zu erwarten, dass es immer wieder Fälle gibt, bei denen keine sinnvolle oder hilfreiche Prädiktion gemacht werden kann. Um in diesen Fällen immer noch eine einigermaßen überschaubare und sinnvolle Liste erstellen zu können, soll der Wortschatz der Kategorie entsprechend eingeschränkt werden. Dabei ist es denkbar mit Unterkategorien zu arbeiten, welche automatisch aufgrund der vorherigen Wörter bestimmt werden. Diese Unterkategorisierung soll im Hintergrund vom Nutzer unbemerkt stattfinden. 
         
         Oberkategorien dagegen werden vom Nutzer bewusst und manuell ausgewählt. Auch soll es zu jeder Zeit möglich sein, die bestehenden Oberkategorien zu wechseln, um somit Zugang zu einem anderen Vokabular zu erhalten.
         
-        Eine Unterkategorie wird über eine Klassifizierung des bisher ausgegeben Inhalts erkannt. Sollte ein Nutzer also erzählen, er sei auf dem Weg in den Supermarkt, wird die Applikation zu dem Thema Supermakt wechseln und zukünftige Wortvorschläge darauf basieren. Wie sehr sich Unterkategorien tatsächlich auf die Einschränkung oder doch nur auf die Sortierung des Ergebnisses auswirkt, soll im Verlauf der Implemetierung erprobt werden. --Kann sein, dass man den Wortschatz auch von Hand einschränken muss, dann wird das für die Arbeit mit einer sehr kleinen Pseudosprache geschehen, da sonst zu aufwändig.--  
+        Eine Unterkategorie wird über eine Klassifizierung des letzten ausgewählten Wortes erkannt. Wie sehr sich Unterkategorien tatsächlich auf die Einschränkung oder doch nur auf die Sortierung des Ergebnisses auswirkt, soll im Verlauf der Implemetierung erprobt werden. 
         
         
     \newpage
 	\subsection{Ausgabe}
         
-        Als letzter Teil der Anforderungen soll hier die visuelle Oberfläche der Applikation beschrieben werden. Diese richtet sich im groben an der zu Beginn beschrieben Software \emph{Tobii Sonar Scribe}. Da \emph{Tobii Sonar Scribe} allerdings wesentlich mehr Funktionen beinhaltet, soll die Oberfläche dieser Applikation sehr viel stärker reduziert werden. Der Hersteller \emph{Tobii} weist selbst in einem Anleitungsvideo auf die kleinen Schaltflächen der eigenen Applikation hin. \parencite[min. 0:53]{tobii:sonoScribeVideo} Diese Vereinfachung soll auch wieder einer größeren Gruppe von Nutzern die Bedienung der Applikation ermöglichen.
+        Als letzter Teil der Anforderungen soll hier die visuelle Oberfläche der Applikation beschrieben werden. Diese richtet sich im groben an der in \autoref{sec:software-examples} beschrieben Software \emph{Tobii Sonar Scribe}. Da \emph{Tobii Sonar Scribe} allerdings wesentlich mehr Funktionen beinhaltet, soll die Oberfläche dieser Applikation sehr viel stärker reduziert werden. Der Hersteller \emph{Tobii} weist selbst in einem Anleitungsvideo auf die kleinen Schaltflächen der eigenen Applikation hin. \parencite[min. 0:53]{tobii:sonoScribeVideo} Diese Vereinfachung soll auch wieder einer größeren Gruppe von Nutzern die Bedienung der Applikation ermöglichen.
         
         Die Applikation soll nicht für ein bestimmtes Endgerät oder eine bestimmte Bildschirmgröße entwickelt werden. Dennoch wird hier von einem Fenster, das im Groben die Maße eines DIN A4 Blattes im Querformat aufweist, ausgegangen. Stark abweichende Bildschirmgrößen werden nicht berücksichtigt. Im oberen Teil des Bildschirms erstreckt sich vom linken bis zum rechten Rand eine Textzeile, in welcher der bisher generierte Satzteil angezeigt wird. Darunter befindet sich je nach Kontext die Liste der vorgeschlagenen Wörter oder Kategorien.
         
@@ -43,27 +46,6 @@
     		\label{img:GUIBase}
 		\end{figure}
         
-        Sowohl die Liste der Wörter als auch die der Kategorien sollen als Raster von gleich großen Buttons dargestellt werden. Auf der ersten Position der Liste im Kontext der Wortvorschläge befindet sich ein Zurückbutton, mit welchem man zu der Kategorieübersicht gelangt. Das vorausgewählte Listenelement ist das zweite, so dass  man über das Zurücknavigieren in der Liste auf den Zurückbutton gelangt. Der bereits generierte Satz geht nicht verloren, wenn der Nutzer zurück zur Kategorieauswahl navigiert. Nach jedem ausgewählten Wort wird sofort die nächste Liste an vorgeschlagenen Wörtern generiert und angezeigt. Vorgeschlagene Wörter sollen bei fehlerfreier Funktion in der entsprechenden Zeit und Konjugation und Deklination vorgeschlagen werden. Die Sprachausgabe ist nicht Teil dieser Arbeit und auch nicht des Prototypen.
-        
+        Sowohl die Liste der Wörter als auch die der Kategorien sollen als Raster von gleich großen Buttons dargestellt werden. Auf der ersten Position der Liste im Kontext der Wortvorschläge befindet sich ein Zurückknopf, mit welchem man zu der Kategorieübersicht gelangt. An zweiter Stelle ein Löschknopf. Das vorausgewählte Listenelement ist das dritte, so dass  man über das Zurücknavigieren in der Liste auf den Lössch - bzw. den Zurückknopf gelangt. Der bereits generierte Satz geht nicht verloren, wenn der Nutzer zurück zur Kategorieauswahl navigiert. Nach jedem ausgewählten Wort wird sofort die nächste Liste an vorgeschlagenen Wörtern generiert und angezeigt. Die Sprachausgabe ist nicht Teil dieser Arbeit und auch nicht des Prototypen.
 	\newpage
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    

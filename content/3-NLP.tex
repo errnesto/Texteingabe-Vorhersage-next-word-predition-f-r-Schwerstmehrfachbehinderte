@@ -1,12 +1,16 @@
-\section{NLP}
+\section{Sprachmodelle}
 
-	\subsection{Klassifizierung}
-    	-> naive bais
-        -> vorbestimmte kategorien
-        
-	\subsection{next word prediction}
-		\subsubsection{Language models}
-        	-> just n-gramms
+    \subsection{Überblick}
+    \subsection{n-gramms}
             -> hog n-gramms are bad to because \parencite[470]{cumpatationalLinguistics:classBasedNGramms}
-		\subsubsection{corpora and Statistiken}
-		\subsubsection{Bibliotheken und APIs}
+        
+	\subsection{Klassenbasierte n-gramm Sprachmodelle}
+    \label{sec:brownClustering}
+    
+    \begin{equation}
+   		P(w_i|w_{i-1}) = P(w_i|c_i) P(c_i|c_{i-1})
+        \label{eq:wordPropability}
+	\end{equation} 
+        	
+	\subsection{Corpora}
+    

@@ -1,0 +1,52 @@
+\subsection{Corpus Generieren}
+    -> gute corpi sind kuratiert 
+    -> prototyp nur mit kleinen corpi
+        
+    \subsubsection*{Text bereinigen}
+    
+        Zum Testen der folgenden Textoperationen wurde Project Gutenberg's Alice's Abenteuer im Wunderland \parencite{gutenberg:alice} als Ausgangstext verwendet.
+        
+        Bevor ein Text dem Algorithmus übergeben werden kann muss dieser zuerst bereinigt werden. Dies ist zu großen Teilen mit Reguläreren Ausdrücken möglich. Zu Beginn werden die in \autoref{fig:regexpSpecialChars} aufgelisteten Sonderzeichen aus dem Text entfernt.
+            
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\linewidth]{images/regexpSpecialChars.png}
+  			\caption{Regulärer Ausdruck zum finden von Sonderzeichen} \parencite{regex101:specialChars}
+			\label{fig:regexpSpecialChars}
+		\end{figure}
+            
+		Auch wenn in deutschem Text Groß- und Kleinschreibung den Unterschied zwischen zwei Worten ausmachen kann, lieferte die Umwandlung des kompletten Textes in Kleinbuchstaben subjektiv bessere Ergebnisse in der Wortvorhersage. Da somit ein Wort am Satzanfang keinen Unterschied zu dem gleichen Wort an einer anderen Position im Satz aufweist. Ein Satzanfang folgt in der Regel auf ein Satzende darum wird im Folgenden von einem \emph{Satzumbruch} gesprochen. Um den \emph{Corpus} weiter zu vereinfachen wurden die in \autoref{tab:wordTags} gelisteten Ersetzungen eingeführt.
+        
+		\begin{figure}[H]
+			\centering
+                
+			\begin{tabular}{ l | l }
+                Ersetzung & Bedeutung \\ \hline \hline
+                \texttt{<number>} & Zahlen \\ \hline
+                \texttt{<abbrevation>} & bekannte Abkürzungen \\ \hline
+                \texttt{<unkown>} & Wörter mit nur einem Buchstaben \\ \hline
+                \texttt{<S/>} & \emph{Satzumbruch}
+            \end{tabular}
+            \caption{ }
+			\label{tab:wordTags}
+		\end{figure}
+            
+        Auch \emph{Satzumbrüche} können mit Reguläreren Ausdrücken gefunden werden. Um möglichst wenige falsch als \emph{Satzumbruch} markierte Stellen zu haben wird ein Satzanfang eher konservativ mit dem in \autoref{fig:regexpSentence1} erklärten Regulärem Ausdruck definiert. Ein \emph{Satzumbruch} beginnt also mit einem Kleinbuchstaben vor einem Punkt, einem Fragezeichen oder einem Ausrufezeichen. Darauf folgt ein \emph{white space character} vor einem Großbuchstaben oder einer Ziffer.
+            
+		\begin{figure}[H]
+        	\centering
+            \includegraphics[width=0.8\linewidth]{images/regexpSentence.png}
+  			\caption{Regulärer Ausdruck zum finden von \emph{Satzumbrüchen} \parencite{regex101:sentence1}}
+			\label{fig:regexpSentence1}
+		\end{figure}
+            
+		Diese Definition übersieht Satzenden am Ende eines Absatzes, darum wird noch ein weiterer in \autoref{fig:regexpSentence2} gezeigter Regulärer Ausdruck verwendet. In kombination konnten mit diesen Beiden Ausdrücken in Tests fast alle \emph{Satzumbrüche} gefunden werden.
+            
+        \begin{figure}[H]
+			\centering
+            \includegraphics[width=0.8\linewidth]{images/regexpSentence2.png}
+  			\caption{zweiter Regulärer Ausdruck zum finden von \emph{Satzumbrüchen} \parencite{regex101:sentence2}}
+			\label{fig:regexpSentence2}
+		\end{figure}
+            
+        Dank der Ersetzung von Abkürzungen können Falsche Erkennungen reduziert werden, da Abkürzungen wie \enquote{\texttt{z. B.}} nicht mehr als \emph{Satzumbruch} erkannt werden. Darum wird die Ersetzung von Abkürzungen vor dem Finden von \emph{Satzumbrüchen} vorgenommen. Dies gilt auch für das Entfernen von Sonderzeichen, somit wird Beispielsweise auch im Textausschnitt \enquote{\texttt{[\dots]>>hole sie her.<< Und der Henker lief[\dots]}} der \emph{Satzumbruch} erkannt. In \autoref{fig:regexpSpecialChars} wurden darum auch keine Zeichen entfernt die zur Erkennung von \emph{Satzumbrüchen} benötigt werden. Alle anderen Ersetzungen so wie das Umwandeln in Kleinbuchstaben werden nach dem Markieren von \emph{Satzumbrüchen} vorgenommen.
