@@ -11,6 +11,7 @@
 \usepackage{dirtree}
 \usepackage{diagbox}
 \usepackage[autostyle]{csquotes}
+\usepackage{amsmath}
 \usepackage[backend=biber,style=authoryear,citestyle=authoryear,url]{biblatex}
 \bibliography{library.bib}
 \lstset{
@@ -23,6 +24,10 @@
     breaklines       = true,
     xleftmargin      = .1\textwidth
 }
+
+% space before and after floating element e.g. figures
+\setlength{\intextsep}{24pt plus 2.0pt minus 4.0pt}
+\setlength{\belowcaptionskip}{-10pt minus 10pt}
 
 % add custom product-number field to litarute
 \DeclareSourcemap{
@@ -68,11 +73,11 @@
 	\input{content/0-Einletung}
 	\input{content/1-Grundlagen}
 	\input{content/2-Anforderungen}
-	\input{content/3-Sprachmodelle}
-	\input{content/4-Design}	
+	\input{content/3-Design}
+    \input{content/4-Sprachmodelle}
 	\input{content/5-Implementierung}
-	\input{content/6-Ergebniss}
-	\input{content/7-Resuemee}
+    \input{content/6-Tests}
+	\input{content/7-Ergebniss}
     
     %bibliography
     \printbibliography

@@ -2,6 +2,7 @@
 	\label{sec:requirements}
     
 	\subsection{Eingabe}
+    \label{sec:requirements-input}
  
     	Ziel dieser Arbeit ist die Entwicklung eines Prototypen einer Sprachapplikation. Mit dieser Applikation soll ein nichtsprechender und motorisch eingeschränkter Nutzer Sätze erzeugen können, die per Sprachausgabe ausgegeben werden können. Dabei soll es nicht nötig sein zu tippen. Sätze werden erzeugt, indem ein Wort nach dem anderen aus einer Liste von Wörtern ausgewählt wird. Am Ende wird der Satz bestätigt und ausgegeben. Sollte ein Wort ausversehen zum Satz hinzugefügt worden sein, muss es möglich sein, diesen Fehler zu korrigieren und das Wort wieder aus dem Satz zu entfernen. Das erste Wort in der Liste ist dabei das Wort, welches am wahrscheinlichsten als nächstes im aktuellen Satz vorkommen wird. Alle weiteren Wörter sind dann nach absteigender Wahrscheinlichkeit sortiert.
          
@@ -13,10 +14,19 @@
         
         Diese Einschränkung wäre natürlich für Nutzer von Eingabegeräten, welche mehr als drei Signale erzeugen können, schnell frustrierend. So soll es möglich sein, auf weitere Signale zu reagieren und mit diesen Erleichterungen bei der Bedienung der Applikation umzusetzen. Ein Beispiel hierfür wäre eine Liste, die sich über mehrere Zeilen erstreckt. Es ist möglich durch diese mit einem einzigen \emph{weiter} Befehl zu navigieren. Wenn möglich, wäre es aber auch wünschenswert, eine Zeile nach unten oder eben auch zurück zu navigieren.
         
-        Bei der Betrachtung bestehender Eingabegeräte fallen weitere Anforderungen an die Bedienung der Applikation auf. Es gibt z. B. verschiedene Eingabegeräte für körperlich eingeschränkte Personen, die zur Steuerung eines Mauszeigers gedacht sind. Zum Beispiel die in \autoref{sec:input-devices} beschriebene Augensteuereng. Andere Geräte arbeiten, wie auch in \autoref{sec:input-devices} vorgestellt mit verschieden angeordneten großen Tasten, manche bilden diese Tasten auch auf einem Touchscreen ab. Darum sollte es auch möglich sein, die Schaltflächen der Applikation klassisch per Maus oder Fingerdruck auswählen zu können. Dabei sollte auf die ungewöhnliche Steuerung des Mauszeigers und motorische Einschränkungen bei der Bedienung von Touchscreens Rücksicht genommen werden.
+        Bei der Betrachtung bestehender Eingabegeräte fallen weitere Anforderungen an die Bedienung der Applikation auf. Es gibt z. B. verschiedene Eingabegeräte für körperlich eingeschränkte Personen, die zur Steuerung eines Mauszeigers gedacht sind. Zum Beispiel die in \autoref{sec:input-devices} beschriebene Augensteuereng. Andere Geräte arbeiten, wie auch in \autoref{sec:input-devices} vorgestellt, mit verschieden angeordneten großen Tasten, manche bilden diese Tasten auch auf einem Touchscreen ab. Darum sollte es auch möglich sein, die Schaltflächen der Applikation klassisch per Maus oder Fingerdruck auswählen zu können. Dabei sollte auf die ungewöhnliche Steuerung des Mauszeigers und motorische Einschränkungen bei der Bedienung von Touchscreens Rücksicht genommen werden.
         
-        Ziel dieser Abstrahierung der Eingabehandhabung ist der Versuch die Grundlagen für ein modulares System zu skizzieren, welches auch mit zukünftigen noch nicht existierenden Eingabegeräten funktionieren kann.
+        Ziel dieser Abstrahierung der Eingabehandhabung ist der Versuch, die Grundlagen für ein modulares System zu skizzieren, welches auch mit zukünftigen noch nicht existierenden Eingabegeräten funktionieren kann.
         
+        \begin{figure}[H]
+    		\centering
+    		\includegraphics[width=.6\linewidth]{images/kategorien.png}
+    		\caption[Aufbau der Grafischen Benutzeroberfläche]{Screenshot: Liste verfügbarer Kategorien}
+    		\label{img:categories}
+		\end{figure}
+        
+        
+    \newpage
 	\subsection{Kategorieauswahl / -erkennung}
     \label{sec:requirements_categories}
     
@@ -24,12 +34,11 @@
         
     	Da zur Prädiktion von wahrscheinlichen nächsten Wörtern zuerst einmal ein Satzanfang benötigt wird, startet man zu Beginn mit einer Kategorieübersicht. In dieser Übersicht sollen die Kategorien, wie sonst auch die Worte, als Liste dargestellt werden. Basierend auf der Kategorieauswahl wird dann eine Liste von möglichen ersten Wörtern eines Satzes angezeigt. 
         
-        Durch die enorme Einschränkung der möglichen Eingabesignale kann das Navigieren durch lange Listen sehr zeitaufwändig werden. Natürlich stehen im optimalen Fall die benötigten Wörter am Anfang der Liste. Es ist aber zu erwarten, dass es immer wieder Fälle gibt, bei denen keine sinnvolle oder hilfreiche Prädiktion gemacht werden kann. Um in diesen Fällen immer noch eine einigermaßen überschaubare und sinnvolle Liste erstellen zu können, soll der Wortschatz der Kategorie entsprechend eingeschränkt werden. Dabei ist es denkbar mit Unterkategorien zu arbeiten, welche automatisch aufgrund der vorherigen Wörter bestimmt werden. Diese Unterkategorisierung soll im Hintergrund vom Nutzer unbemerkt stattfinden. 
+        Durch die enorme Einschränkung der möglichen Eingabesignale kann das Navigieren durch lange Listen sehr zeitaufwändig werden. Natürlich stehen im optimalen Fall die benötigten Wörter am Anfang der Liste. Es ist aber zu erwarten, dass es immer wieder Fälle gibt, bei denen keine sinnvolle oder hilfreiche Prädiktion gemacht werden kann. Um in diesen Fällen immer noch eine einigermaßen überschaubare und sinnvolle Liste erstellen zu können, soll der Wortschatz der Kategorie entsprechend eingeschränkt werden. Dabei ist es denkbar, mit Unterkategorien zu arbeiten, welche automatisch aufgrund der vorherigen Wörter bestimmt werden. Diese Unterkategorisierung soll im Hintergrund vom Nutzer unbemerkt stattfinden. 
         
-        Oberkategorien dagegen werden vom Nutzer bewusst und manuell ausgewählt. Auch soll es zu jeder Zeit möglich sein, die bestehenden Oberkategorien zu wechseln, um somit Zugang zu einem anderen Vokabular zu erhalten.
+        Oberkategorien dagegen werden vom Nutzer bewusst und manuell, aus der in \autoref{img:categories} gezeigten Liste, ausgewählt. Auch soll es zu jeder Zeit möglich sein, die bestehenden Oberkategorien zu wechseln, um somit Zugang zu einem anderen Vokabular zu erhalten.
         
-        Eine Unterkategorie wird über eine Klassifizierung des letzten ausgewählten Wortes erkannt. Wie sehr sich Unterkategorien tatsächlich auf die Einschränkung oder doch nur auf die Sortierung des Ergebnisses auswirkt, soll im Verlauf der Implemetierung erprobt werden. 
-        
+        Eine Unterkategorie wird über eine Klassifizierung des letzten ausgewählten Wortes erkannt. Wie sehr sich Unterkategorien tatsächlich auf die Einschränkung oder doch nur auf die Sortierung des Ergebnisses auswirkt, soll im Verlauf der Implemetierung erprobt werden.
         
     \newpage
 	\subsection{Ausgabe}
@@ -40,8 +49,8 @@
         
 		\begin{figure}[H]
     		\centering
-    		\includegraphics[width=15cm]{images/UI-Model.png}
-    		\caption[Aufbau der Grafischen Benutzeroberfläche]{Aufbau der Grafischen Benutzeroberfläche}
+    		\includegraphics[width=.55\linewidth]{images/UI-Model.png}
+    		\caption[Aufbau der Grafischen Benutzeroberfläche]{Screenshot: Aufbau der Grafischen Benutzeroberfläche}
     		\label{img:GUIBase}
 		\end{figure}
         
