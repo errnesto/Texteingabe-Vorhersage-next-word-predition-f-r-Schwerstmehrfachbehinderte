@@ -1,15 +1,14 @@
 \section{Ergebniss und Resuemee}
-	Bedienung mit Tastaur möglich
-    Vorhersage sinnvol aber schwer einen gewünschten Satz zu bilden.
-    	-> Kuratierte Corpora oder bessere Textquellen
-        -> Tastatur zur als möglichkeit
-        -> 1-gramms ergeben teilweise nerfige fehler
-        -> beste brown cluster haben immerhin 2-gramms
+    
+    Mit den doch sehr kleinen \emph{Corpora} und den daraus generierten \emph{Sprachmodellen} \emph{Märchen} und \emph{Prosa} ist zwar eine Sinnvolle Textvorhersage zu erkennen, diese ist leider aber bei weitem nicht gut genug um tatsächlich ohne weitere Eingaben Sätze zu generieren. Es wäre denkbar darum auf Wunsch eine Tastatur einzublenden und die Vorhersage durch eingegebene Buchstaben zu optimieren. Damit würde die Applikation allerdings auch ein wenig komplexer in der Bedienung werden. 
+    
+    Mit dem \emph{Sprachmodell} \emph{Simple} können dagegen durchaus sinnvolle Sätze generiert werden. Allerdings sind das Vokabular und auch die möglichen Sätze in diesem \emph{Sprachmodell} natürlich auch viel eingeschränkter. Dies ist zunächst ein durchaus gewolltes Resultat, da man diese Einschränkungen durch wechseln der Kathegorien überwinden kann. Um auf diese Weise eine Nutzbare Software zu generieren müssten allerdings mehrere thematisch unterschiedliche \emph{Corpora} manuell erstellt werden. Möglicherweise ließen sich auch z. B. in Schulbüchern oder Bücher zum erlernen der deutschen Sprache als Corpora nutzbare Texte finden.
+    
+	Der in \autoref{sec:brownClustering} vorgestellte \emph{Brown Cluster} Algorithmus kann als die in \emph{\autoref{sec:requirements_categories}} geforderte Kategorieerkennung gesehen werden. Allerdings werden hierbei lediglich \emph{bigramms} verwendet. Dies bedeutet, dass die Kategorieauswahl lediglich auf dem vorherigen Wort basiert. Dies ist auch an der Vorhersage deutlich zu merken. So wird in der Kategorie \emph{Prosa} auf den Satzanfang \texttt{ich habe} wieder \texttt{ich} als Wahrscheinlichster Nachfolger vorgeschlagen. Es wäre hier interessant ein einfaches \emph{3-gramm} Modell oder mehrere Algorithmen in Kombination zu testen. \cite{speechcommunication:exchange} beschreiben für ihren \emph{exchange Algorithmus} auch eine Implementierung in welcher \emph{3-gramms} verwendet werden. Auch hier wäre es interessant Ergebnisse zu vergleichen.
+            
+    Wie in \autoref{sec:input-devices} vorgestellt, wird in der Unterstützen Kommunikation auch viel mit Symbolen gearbeitet. Es kann also davon ausgegangen werden, dass eine große Nutzergruppe Software die textbasiert ist gar nicht bedienen kann. Darum wäre es wünschenswert auch in dem Prototypen mit Symbolen zu arbeiten. Dazu müssten zunächst alle in allen \emph{Corpora} enhaltenen Worte entsprechenden Symbolen zugeordnet werden und diese dann in der Benutzeroberfläche über diesen Worten angezeigt werden. Eine manuelle Einschränkung des Wortschatzes wäre hier unumgänglich. Weitere Anpassungen am Prototypen wären dazu nicht nötig. Das verwenden von Symbolen wäre auch desshalb interessant, da es wie in \autoref{sec:software-examples} gezeigt, bereits gute Lösungen zur Wortvorhersage gibt. In Symbolbasierter Software sind mir allerdings keine solche Lösungen bekannt.
         
-    Bilder statt Wörter:
-    	-> weil "viele Schüler können gar nicht lesen"
-    	-> gerade bei kuratierten eingeschränkten corpora sinnvoll
-        -> leicht bild zu wort zu mappen schwer alle worte in unbekannten corpora abzudecken
+        Zusammenfassend lässt sich sagen, das der Prototyp in seiner jetzigen Form leider nicht als \emph{Talker} zu benutzen ist. In der Wortvorhersage gibt es noch viele mögliche und nötige optimierungen. Die verschiedenen \emph{Sprachmodelle} als eigne Kategorien, sind in Ihrer Vorhersage deutlich zu unterscheiden. Gerade das Modell \emph{Simple} zeigt, dass die ursprüngliche Idee den Wortschatz einzuschränken um die Prädiktion zu verbessern im Prinzip funtioniert.  
         
         
            \newpage

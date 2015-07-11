@@ -1,0 +1,13 @@
+\subsection{Klassenbasierte n-gramm Sprachmodelle}
+\label{sec:brownClustering}
+    
+    -> exmple from brown: next Monday != next Thuesday
+    -> is some kind of smoothing
+    -> rertive cluster by assumtion:
+    
+	\begin{equation}
+   		P(w_i|w_{i-1}) = P(w_i|c_i) P(c_i|c_{i-1})
+        \label{eq:wordPropability}
+	\end{equation}
+        
+    -> explain buttom up algorythm

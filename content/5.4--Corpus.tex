@@ -1,6 +1,17 @@
 \subsection{Corpus Generieren}
-    -> gute corpi sind kuratiert 
-    -> prototyp nur mit kleinen corpi
+    In früheren Versuchen wurden die unter \texttt{http://dumps.wikimedia.org/backup-index.html} zum download verfügbaren Artikel von der Wikipedia als \emph{Corpus} verwendet. Allerdings war hier schnell zu erkennen, dass das daraus generierte \emph{Sprachmodell} schlecht für einen \emph{Talker} geeignet sind. So dürfte das Wort \texttt{ich} für einen Nutzer ein sehr wichtiges Wort sein. Bei Wikipedia ist das Auftreten dieses Wortes jedoch eher seltener Wort zu vermuten.
+    
+    Letztendlich wurden drei verschiedene \emph{Corpora} generiert.
+    Alle Texte sind dem Project Gutenberg entnommen.
+    
+    \begin{description}
+		\item[Märchen] besteht aus den drei älteren Märchen: \emph{Alice Abenteuer im Wunderland} \parencite{gutenberg:alice}, \emph{Der Mann im Mond} \parencite{gutenberg:mannImMond} und \emph{Peterchens Mondfahrt} \parencite{gutenberg:mondfahrt}. In diesem Corpus werden alte Rechtschreibung und alte Sprache verwendet. Gleichzeitig sind viele Dialoge enthalten.
+        
+        \item[Prosa] besteht aus einer Briefsammlung von Wilhelm von Humboldt mit dem Titel \emph{Briefe an eine Frendin} \parencite{gutenberg:briefeFreundin}. Diese Briefe sind in altmodischer Sprache verfasst und in Ich-Form geschrieben.
+        
+        \item[Simple] ist ein manuell generierter \emph{Corpus} hier sind Sätze wie \texttt{ich habe hunger} enthalten. Also Sätze die zur grundlegenden Kommunikation benötigt werden, wie man sie in einem Reiseführer finden könnte.
+            
+	\end{description}
         
     \subsubsection*{Text bereinigen}
     
