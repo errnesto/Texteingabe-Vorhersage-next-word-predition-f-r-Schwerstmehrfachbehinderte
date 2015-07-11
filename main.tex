@@ -27,7 +27,7 @@
 
 % space before and after floating element e.g. figures
 \setlength{\intextsep}{24pt plus 2.0pt minus 4.0pt}
-\setlength{\belowcaptionskip}{-10pt minus 10pt}
+\setlength{\belowcaptionskip}{-pt plus 10pt minus 10pt}
 
 % add custom product-number field to litarute
 \DeclareSourcemap{
@@ -81,5 +81,14 @@
     
     %bibliography
     \printbibliography
+    \newpage
+    
+    \appendix
+    \renewcommand\thefigure{A.\arabic{figure}}
+    \renewcommand*{\thepage}{A\arabic{page}}
+    \setcounter{page}{1}
+    \setcounter{figure}{0}
+    \input{appendix/1-Results}
+    \input{appendix/2-Code}
 
 \end{document}
