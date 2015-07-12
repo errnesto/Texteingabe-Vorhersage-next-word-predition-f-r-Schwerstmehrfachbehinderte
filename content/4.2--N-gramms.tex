@@ -1,31 +1,32 @@
 \subsection{N-gramms}
     \label{sec:n-gramms}
     
-    Um Informationen über ein Wort in einem Text zu erhalten ist eine Möglichkeit sich die Umgebung dieses Wortes anzusehen. Ein \emph{N-gramm} besteht also aus einem Wort und den \emph{N-1} vorherigen Wörtern an einer Textstelle. Mit diesen Informationen können wir auch eine Sprache so beschreiben, dass wir Wortvrhersagen machen können. \parencite[S. 468, Gleichung 1]{cumpatationalLinguistics:classBasedNGramms} machen dazu die in \autoref{eq:wordChain} gezeigte Annahme.
+    Um Informationen über ein Wort in einem Text zu erhalten ist eine Möglichkeit sich die Umgebung dieses Wortes anzusehen. Ein \emph{N-gramm} besteht also aus einem Wort und den \emph{N-1} vorherigen Wörtern an einer Textstelle. Die Kombination aus einem Wort mit einem Vorgänger nennt sich \emph{bogramm}, bei zwei Vorgängern spricht man von einem \emph{trigramm}. Mit diesen Informationen können wir auch eine Sprache so beschreiben, dass wir Wortvrhersagen machen können. \parencite[S. 468, Gleichung 1]{cumpatationalLinguistics:classBasedNGramms} machen dazu die in \autoref{eq:wordChain} gezeigte Annahme.
         
     \begin{equation}
        	Pr(w_1^k) = Pr(w_1) Pr(w_2|w_1) \cdots Pr(w_k|w_1^{k-1})
        	\label{eq:wordChain}
     \end{equation}
        
-    Sie betrachten also die Wahrscheinlichkeit eines Wortes abhängig von seinen Vorgängern \(Pr(w_k|w_1^{k-1})\). Und definieren die Wahrscheinlichkeit einer Wortkette \(Pr(w_1^k)\) als Summe dieser Wahrscheinlichkeiten. In dem online Buch \parencite{nlwp:book} wird dazu unter Abschnitt 3.8 eine gute Erklärung geliefert. Zunächst formulieren de Kok und Brouwer die Formel neu mit einem Beispielsatz. Hier wird dazu in \autoref{eq:wordChainWithWords} der Satz \texttt{ich war gestern abend essen} verwendet werden.
+    Sie betrachten also die Wahrscheinlichkeit eines Wortes abhängig von seinen Vorgängern \(Pr(w_k|w_1^{k-1})\). Und definieren die Wahrscheinlichkeit einer Wortkette \(Pr(w_1^k)\) als Summe dieser Wahrscheinlichkeiten. In dem online Buch \parencite{nlwp:book} wird dazu unter Abschnitt 3.8 eine gute Erklärung geliefert. Zunächst formulieren de Kok und Brouwer die Formel neu mit einem Beispielsatz. Hier wird dazu in \autoref{eq:wordChainWithWords} der Satz \texttt{ich war gestern abend essen} verwendet werden. In den folgenden Textbeispielen werden alle Worte kleingeschrieben. Überlegungen dazu finden sich in \autoref{clean-up-text} 
         
     \begin{equation}
        	\begin{split}
-       		Pr(\text{ich war gestern abend essen}) \\
-            = Pr(\text{ich}) Pr(\text{war}|\text{ich}) Pr(\text{gestern}|\text{ich war}) \\
-            Pr(\text{abend}|\text{ich war gestern}) Pr(\text{essen}|\text{ich war gestern abend}) 
+       		Pr(\texttt{ich war gestern abend essen}) \\
+            = Pr(\texttt{ich}) Pr(\texttt{war}|\texttt{ich}) Pr(\text{gestern}|\texttt{ich war}) \\
+            Pr(\texttt{abend}|\texttt{ich war gestern}) Pr(\text{essen}|\texttt{ich war gestern abend}) 
         \end{split}
         \label{eq:wordChainWithWords}
     \end{equation}
         
     Im gleichen Abschnitt erklären sie, dass ein \emph{korrekter} Satz eine höhere Wahrscheinlichkeit haben wird als ein fehlerhafter. Interessant ist hier was als \emph{korrekt} verstanden wird. Da sich diese Wahrscheinlichkeiten auf aus Trainingstexten gelernten Statistiken beziehen. So kann ein viel verwendeter grammatisch unkorrekter Satz auch eine hohe Wahrscheinlichkeit haben. Das ist eine durchaus erwünschte Eigenschaft solcher Modelle.
         
-    In \parencite{nltk:book} unter Abschnitt 1.1 von Kapitel 8 wird sehr schön gezeigt, dass es theoretisch unendlich solcher \emph{korrekter} Sätze gibt. Es ist also unmöglich, selbst mit sehr großen Trainingstexten eine Sprache komplett abzubilden und mit \autoref{eq:wordChain} für jeden denkbaren Satz Wahrscheinlichkeiten zu berechnen. 
+    In \parencite{nltk:book} unter Abschnitt 1.1 von Kapitel 8 wird sehr schön gezeigt, dass es theoretisch unendlich solcher \emph{korrekter} Sätze gibt. Es ist also unmöglich, selbst mit sehr großen Trainingstexten eine Sprache komplett abzubilden und mit \autoref{eq:wordChain} für jeden denkbaren Satz Wahrscheinlichkeiten zu berechnen.
+    \newpage
         
     De Kok und Brouwer erwähnen auch, dass es sich bei \autoref{eq:wordChain} um eine Markow-Kette handelt. Sie fahren fort, dass wir auf die Kette nun auch die Markow-Annahme anwenden können. Diese formulieren sie übersetzt als: \enquote{Die Vorhersage des nächsten Zustands ist nur Abhängig von dem aktuellen Zustand.}\parencite[Abs.  3.8]{nlwp:book}
         
-    \autoref{eq:markov-assumtion} zeigt \parencite[Abs.  3.8, Gleichung 3.8]{nlwp:book} in leicht veränderter Schreibweise um innerhalb dieser Arbeit konsitente Bezeichnungen zu verwenden.  
+    \autoref{eq:markov-assumtion} zeigt \parencite[Abs.  3.8, Gleichung 3.8]{nlwp:book} in leicht veränderter Schreibweise um innerhalb dieser Arbeit konsitente Bezeichnungen zu verwenden.
         
     \begin{equation}
        	Pr(w_k|w_1^{k-1}) \approx Pr(w_k|w_{k-1})
@@ -42,13 +43,16 @@
     \(C(w_{k-1};w_k)\) gibt an wie oft im Trainingstext das Wort \(w_{k-1}\) direkt vor \(w_k\) steht. \(C(w_{k-1})\) ist die Häufigkeit des Wortes \(w_{k-1}\) im Trainingstext. Zum besseren Verständniss wird dies in \autoref{eq:bogramm-prob-words} noch einmal mit Beispielworten dargestellt.
         
     \begin{equation}
-       	Pr(\text{war}|\text{ich}) = \frac{C(\text{ich};\text{war})}{C(\text{ich})}
+       	Pr(\texttt{war}|\texttt{ich}) = \frac{C(\texttt{ich war})}{C(\texttt{ich})}
        	\label{eq:bogramm-prob-words}
     \end{equation}
         
         
-    Es ist möglich die Qualität der Vorhersage zu verbessern, wenn man nun nicht nur das vorherige Wort sondern die zwei vorherigen Worte betrachtet. Oder auch, sich \autoref{eq:wordChain} wieder annähernd, die \(N - 1\) vorherigen Worte. Umso größer \emph{N} jedoch wird desto unwahrscheinlicher wird es, dass ein \emph{N-gramm} auch im Trainingstext vorkommt. So werden die Kombinationen \texttt{ich bin} und \texttt{ich war} in einem ausreichend großem Text oft genug vorkommen um gute Aussagen über ihre Wahrscheinlichkeit machen zu können. Bei einer Kombination \texttt{ich war gestern abend} ist schon ein einmaliges Vorkommen nicht unbedingt gegeben.
+    Um eine Wortvorhersage zu treffen kann nun für jedes bekannte Wort diese Wahrscheinlichkeit mit \autoref{eq:markov-assumtion} ausgerechnet werden. Es ist möglich die Qualität der Vorhersage zu verbessern, wenn man nun nicht nur das vorherige Wort sondern die zwei vorherigen Worte betrachtet. Oder auch, sich \autoref{eq:wordChain} wieder annähernd, die \(N - 1\) vorherigen Worte. Umso größer \emph{N} jedoch wird desto unwahrscheinlicher wird es, dass ein \emph{N-gramm} auch im Trainingstext vorkommt. So werden die Kombinationen \texttt{ich bin} und \texttt{ich war} in einem ausreichend großem Text oft genug vorkommen um gute Aussagen über ihre Wahrscheinlichkeit machen zu können. Bei einer Kombination \texttt{ich war gestern abend} ist schon ein einmaliges Vorkommen nicht unbedingt gegeben.
+    \newpage
+    
+    \subsubsection*{data sparsity und smoothing}
         
-    Da diese Wahrscheinlichkeiten mit Hilfe eines Trainingstextes angelernt werden, besteht die Gefahr, dass das Modell zu stark auf die Trainingsdaten abgestimmt ist. Kommt beispielsweise das Wort \texttt{Armatur} nicht in den Trainigsdaten vor, kann man bei ausreicheichend langen Trainingstexten davon ausgehen, dass es sich dabei um ein seltenes Wort hadelt. Dennoch würde in diesem Fall dem Wort nicht nur eine kleine Wahrscheinlichkeit, sondern eine Wahrscheinlichkeit von 0 zugeteilt. Dies gilt nicht nur für alleinstehende Worte sondern auch für seltene Wortkombinationen. Dieses Problem nennt sich \emph{data sparsity} und wird unter anderem auch in einem von Studenten der TU-München erstellten Wiki von \parencite[Abs. 5]{recognize-speech:n-gramms} beschreiben. 
+    Da diese Wahrscheinlichkeiten mit Hilfe eines Trainingstextes angelernt werden, besteht die Gefahr, dass das Modell zu stark auf die Trainingsdaten abgestimmt ist. Kommt beispielsweise das Wort \texttt{armatur} nicht in den Trainingsdaten vor, kann man bei ausreicheichend langen Trainingstexten davon ausgehen, dass es sich dabei um ein seltenes Wort hadelt. Dennoch würde in diesem Fall dem Wort nicht nur eine kleine Wahrscheinlichkeit, sondern eine Wahrscheinlichkeit von 0 zugeteilt. Dies gilt nicht nur für alleinstehende Worte sondern auch für seltene Wortkombinationen. Dieses Problem nennt sich \emph{data sparsity} und wird unter anderem auch in einem von Studenten der TU-München erstellten Wiki von \parencite[Abs. 5]{recognize-speech:n-gramms} beschreiben. 
         
-    Das Abschwächen dieses Effektes nennt sich \emph{smoothing}. Der einfachste \emph{smoothing} Ansatz für \emph{N-gramm} Modelle ist der \emph{Backoff Approach}. Auch dieser wird im oben erwähnten Wiki in \parencite{recognize-speech:backoff} erklärt. Dabei wird sobald ein gesuchtes \emph{N-gramm} nicht gefunden wird einfach auf das nächst kürzere Modell zurückgegriffen. Ist die Wahrscheinlichkeit \(Pr(\text{gestern}|\text{ich war}) = 0\) versucht man eine Vorhersage anhand von \(Pr(\text{gestern}|\text{war})\) zu treffen. Das auch von Pfeuffer erläuterte Problem hierbei ist, dass man nun Wahrscheinlichkeiten aus zwei verschiedenen Modellen miteinander mischt. Darum werden von ihm noch weitere \emph{smoothing} Ansätze vorgestellt die beide Modelle inneinader verrechnen. Auf diese wird hier nicht weiter eingegangen, da sie für den entwickelten Prototypen keine Rolle spielen.
+    Das Abschwächen dieses Effektes nennt sich \emph{smoothing}. Der einfachste \emph{smoothing} Ansatz für \emph{N-gramm} Modelle ist der \emph{Backoff Approach}. Auch dieser wird im oben erwähnten Wiki in \parencite{recognize-speech:backoff} erklärt. Dabei wird sobald ein gesuchtes \emph{N-gramm} nicht gefunden wird einfach auf das nächst kürzere Modell zurückgegriffen. Ist die Wahrscheinlichkeit \(Pr(\texttt{gestern}|\texttt{ich war}) = 0\) versucht man eine Vorhersage anhand von \(Pr(\texttt{gestern}|\texttt{war})\) zu treffen. Das auch von Pfeuffer erläuterte Problem hierbei ist, dass man nun Wahrscheinlichkeiten aus zwei verschiedenen Modellen miteinander mischt. Darum werden von ihm noch weitere \emph{smoothing} Ansätze vorgestellt die beide Modelle ineinander verrechnen. Auf diese wird hier nicht weiter eingegangen, da sie für den entwickelten Prototypen keine Rolle spielen.

@@ -1,13 +1,49 @@
-\subsection{Klassenbasierte n-gramm Sprachmodelle}
+\subsection{Klassenbasierte N-gramm Sprachmodelle}
 \label{sec:brownClustering}
     
-    -> exmple from brown: next Monday != next Thuesday
-    -> is some kind of smoothing
-    -> rertive cluster by assumtion:
+    \cite{cumpatationalLinguistics:classBasedNGramms} schlagen eine optimierung der \emph{N-gramm} Modelle vor. Sie nehmen an, dass Worte ihrer Änlichkeit nach Gruppiert werden können. \enquote{Clearly, some words are similar to other words in their meaning and syntactic function.} \parencite[S. 470]{cumpatationalLinguistics:classBasedNGramms} Zur Erleuterung nutzen sie Wochentage. So ist laut ihenen anzunehmen, dass das Wort \texttt{donnerstag} ähnliche Vorgänger hat wie das Wort \texttt{freitag}. Dies lässt sich an folgendem Satz verdeutlichen: \texttt{wir treffen uns am (donnerstag|freitag)}. 
     
-	\begin{equation}
-   		P(w_i|w_{i-1}) = P(w_i|c_i) P(c_i|c_{i-1})
-        \label{eq:wordPropability}
+    Weiter folgern sie: \enquote{If we can successfully assign words to classes, it may be possible to make more reasonable predictions for histories that we have not previously seen by assuming that they are similar to other histories that we have seen.} \parencite[S. 471]{cumpatationalLinguistics:classBasedNGramms} In der freien Übersetzung bedeuted dies: Sofern wir Worte Klassen zuordnen können, kann es möglich sein vernünftigere Vorhersagen für unbekannte Vorgänger zu machen indem wir annehmen, dass diese Ähnlich zu bekannten Vorgängern sind.
+    
+    \cite{cumpatationalLinguistics:theuse} stellen drei Möglichkeiten von solchen Klassenbasierten Vorhersagen vor. \emph{predictive clustering}, \emph{conditional clustering} und \emph{combined clustering}. Zum besseren Verständniss werden diese anhand des oben erwähnten Beispielsatzes erklärt. Gao u. a. verwenden in ihren Beispielen einen anderen Satz und ein \emph{trigramm} Modell abgesehen davon sind die folgenden Formeln ihrem Artikel entnommen. 
+    
+    Beim \emph{predictive clustering} wird zunächst nicht die Wahrscheinlichkeit, dass \texttt{freitag} einem anderen folgt ausgerechnet, sondern die Wahrscheinlichkeit, dass die Klasse \texttt{WOCHENTAG} dem Wort \texttt{am} folgt. Dies wird multipliziert mit der Wahrscheinlichkeit, dass \texttt{freitag} in der Gruppe \texttt{WOCHENTAG} ist und gleichzeitig dem Wort \texttt{am} folgt.
+   	
+     \begin{equation}
+   		Pr(\texttt{freitag}|\texttt{am}) = Pr(\texttt{WOCHENTAG}|\texttt{am}) Pr(\texttt{freitag}|\texttt{am WOCHENTAG})
+        \label{eq:predictive-clustering-words}
 	\end{equation}
-        
+    
+    Gao, Goodman und Miao zeigen, dass dies exakt \(Pr(\texttt{freitag}|\texttt{am})\) ist. Geht man nun davon aus, dass das \emph{bigramm} \texttt{am freitag} nicht in den Traininhgsdaten vorkommt so würde also immer noch eine Wahrscheinlichkeit von 0 für diese Kombination errechnet. Allerdings ändert sich dies, wie Gao u. a. fortführen, sobald man eine Form des \emph{smoothing} verwendet. So könnten in den Trainingsdaten Kombinationen wie \texttt{am donnerstag} oder \texttt{am sonntag} oft vorkommen. Dadurch ergäbe sich auch eine hohe Wahrscheinlichkeit \(Pr(\texttt{WOCHENTAG}|\texttt{am})\). Dank des \emph{smoothigs} wäre \(Pr(\texttt{freitag}|\texttt{am WOCHENTAG}) > 0\). So folgern Gao u. a. wird die Vorhersage dank der Klassifizierung verbessert. Ist \(c_k\) also die Klasse des Wortes \(w_k\) lässt sich dieser Ansatz wie folgt formulieren:
+    
+    \begin{equation}
+   		Pr(w_k|w_{k-1}) = Pr(c_k|w_{k-1}) Pr(w_k|w_{k-1}c_k)
+        \label{eq:predictive-clustering-math}
+	\end{equation}
+    
+    Der Ansatz des \emph{conditional clustering} funktioniert  umgekehrt zum Ansatz des \emph{predictive clustering}. Es wird die Wahrscheinlichkeit berechnet, dass ein Wort einer bestimmten Klasse folgt.
+    
+    \begin{equation}
+   		Pr(\texttt{freitag}|\texttt{am}) = Pr(\texttt{freitag}|\texttt{PRÄPOSITION})
+        \label{eq:conditional-clustering-words}
+	\end{equation}
+    
+    \begin{equation}
+   		Pr(w_k|w_{k-1}) = Pr(w_k|c_k{k-1})
+        \label{eq:conditional-clustering-math}
+	\end{equation}
+    
+    Wie Gao u. a. fortführen werden beim \emph{combined clustering} beide Ansätze verbunden.
+    
+    \begin{equation}
+   		Pr(\texttt{freitag}|\texttt{am}) = Pr(\texttt{WOCHENTAG}|\texttt{PRÄPOSITION}) Pr(\texttt{freitag}|\texttt{PRÄPOSITION WOCHENTAG})
+        \label{eq:combined-clustering-words}
+	\end{equation}
+    
+    \begin{equation}
+   		Pr(w_k|w_{k-1}) = Pr(c_k|c_{k-1}) Pr(w_k|c_{k-1} c_k)
+        \label{eq:combined-clustering-math}
+	\end{equation}
+    
+    -> maybe say is some kind of smoothing    
     -> explain buttom up algorythm
