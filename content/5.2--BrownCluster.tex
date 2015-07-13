@@ -5,7 +5,16 @@
         
     \subsubsection*{1. Versuch}
 
-  		\cite{speechcommunication:exchange} versprechen im Abstract ihres Berichts eine \enquote{effiziente Methode zur Erzeugung von Wort Klassen} (S. 19). Hierzu beschreiben sie in Abschnitt 2.3 einen \emph{exchange algorithm}. Dabei wird zu Beginn den \emph{G} häufigsten Worten eine eigene Klasse zugeteilt. Bei \emph{G} handelt es sich um die gewünschte Anzahl an Wortklassen. Die restlichen Worte werden in einer weiteren Klasse zusammengefasst. Nun wird jedes Wort testweise von seiner bisherigen in jede andere Klasse verschoben. Für diese Verteilung wird dann jeweils die \emph{log-likelihood} (siehe \autoref{sec:brownClustering}) berechnet. Am Ende landet das Wort in der Klasse, die zu der niedrigsten \emph{log-likelihood} führt. Dieser Prozess wird so lange wiederholt bis keine optimierung durch verschieben mehr erreicht werden kann oder eine bestimmte Anzahl an Iterationen überschritten wurde.
+  		\cite{speechcommunication:exchange} versprechen im Abstract ihres Berichts eine \enquote{effiziente Methode zur Erzeugung von Wort Klassen} (S. 19). Hierzu beschreiben sie in Abschnitt 2.3 einen \emph{exchange algorithm}. Dabei wird zu Beginn den \emph{G} häufigsten Worten eine eigene Klasse zugeteilt. Bei \emph{G} handelt es sich um die gewünschte Anzahl an Wortklassen. Die restlichen Worte werden in einer weiteren Klasse zusammengefasst. Nun wird jedes Wort testweise von seiner bisherigen in jede andere Klasse verschoben. Für diese Verteilung wird dann jeweils die \emph{log-likelylihood} berechnet. In \parencite[S. 22 Gleichung 5]{speechcommunication:exchange} ist diese wor folgt definiert:
+        
+        \begin{equation}
+   			\sum_{c_k c_{k-1}} C(c_k c_{k-1}) log C(c_k c_{k-1}) \newline
+            - 2 * \sum_c C(c) log C(g) \newline
+            + \sum_w C(w) log C(w)
+        	\label{eq:log-likelihood}
+		\end{equation}
+        
+        Am Ende landet das Wort in der Klasse, die zu der niedrigsten \emph{log-likelylihood} führt. Dieser Prozess wird so lange wiederholt bis keine optimierung durch verschieben mehr erreicht werden kann oder eine bestimmte Anzahl an Iterationen überschritten wurde.
             
 		\begin{figure}[H]
 			\centering
@@ -14,7 +23,7 @@
 			\label{fig:exchangeAlgorythm}
 		\end{figure}
 
-		Damit die Werte zur Berechnung der \emph{log-likelihood} nicht nach jedem Verschieben eines Wortes aufwändig neu aus dem \emph{Corpus} genereiert werden müssen, werden die betreffenden Werte durch Addition bzw. Substraktion aktualisiert. \parencite[S. 26 f. Abschnitt 3.1.2]{speechcommunication:exchange}
+		Damit die Werte zur Berechnung der \emph{log-likelylihood} nicht nach jedem Verschieben eines Wortes aufwändig neu aus dem \emph{Corpus} genereiert werden müssen, werden die betreffenden Werte durch Addition bzw. Substraktion aktualisiert. \parencite[S. 26 f. Abschnitt 3.1.2]{speechcommunication:exchange}
             
         \newpage
         \begin{lstlisting}[caption=Beispiel für das Aktualisieren von \emph{counts} nachdem ein Wort zu einer Klasse hinzugefügt wurde.,label=code:countUpdate, captionpos=b]
@@ -27,7 +36,7 @@ for group in self.succsessor_groups_of[word]:
         group_bigramm_counts[(new_group, group)] += predecessor_word_count_of_group[group][word]
         \end{lstlisting}
   
-		In den ersten Versionen der Implementierung entstanden hier oft fehler. Um diese Fehler leichter zu finden wurden Tests für die update Funktionen geschrieben. Dazu wurde ein sehr kleiner \emph{Corpus} verwendet bei dem die Effekte einer Verschiebung leicht manuell zu berechnen waren. In \autoref{code:testCounts} kommt \texttt{Altweibersommer} zwei mal im \emph{Corpus} vor also sollte der \texttt{group\_count} von Gruppe \texttt{0} um zwei erhöhen. Die \texttt{group\_bigramm\_counts} lassen sich ebenso aus de
+		In den ersten Versionen der Implementierung entstanden hier oft fehler. Um diese Fehler leichter zu finden wurden Tests für die update Funktionen geschrieben. Dazu wurde ein sehr kleiner \emph{Corpus} von drei kurzen Sätzen verwendet bei dem die Effekte einer Verschiebung leicht manuell zu berechnen waren. In \autoref{code:testCounts} kommt \texttt{Altweibersommer} zwei mal im \emph{Corpus} vor also sollte der \texttt{group\_count} von Gruppe \texttt{0} um zwei erhöhen. Die \texttt{group\_bigramm\_counts} lassen sich ebenso aus dem Corpus ablesen.
 
 		\begin{lstlisting}[caption=Beispiel eines Tests zum Aktualisieren von \emph{counts} nachdem ein Wort einer Klasse hinzugefügt wurde., captionpos=b, label=code:testCounts]
                 
@@ -46,9 +55,8 @@ def test_move_Altweibersommer_to_gruop_0(learner, group_bigramm_counts, group_co
 		\end{lstlisting}
                 
 		So kann sichergestellt werden, dass die \emph{counts} auch bei eventuellen zukünftigen Optimierungen richtig aktualisiert werden. Dabei werden nicht nur die Werte für die veränderten \emph{counts} (\texttt{0\_1}, \texttt{0\_17}, \texttt{0\_0} und \texttt{group\_counts[0]}) überprüft, sondern die gesammte Tabelle. Damit tritt auch das Aktualisieren von falschen Werten als Fehler im Test auf. Rückblickend müssten hier die \emph{counts} allerdings neu gezählt und dann mit den Aktualisierungen verglichen werden. In der letzten Version von \autoref{code:countUpdate} befanden sich immer noch Fehler.
-		\newpage
 
-		Diese Tests können natürlich auch nicht gegen Fehlinterpretationen des Algorithmus absichern. Die einzige Verifizierung einer korrektem Implementierung sind sinnvoll generierte Wortklassen. Für diese wird ein ausreichend großer \emph{Corpus} benötigt. Allerdings konnte mit der umgesetzten Implementierung keine zufriedenstellende Laufzeit für einen entsprechend großen \emph{Corpus} erreicht werden.
+		Diese Tests können natürlich auch nicht gegen Fehlinterpretationen des Algorithmus absichern. Eine gute Verifizierung einer korrektem Implementierung sind sinnvoll generierte Wortklassen. Für diese wird ein ausreichend großer \emph{Corpus} benötigt. Allerdings konnte mit der umgesetzten Implementierung keine zufriedenstellende Laufzeit für einen entsprechend großen \emph{Corpus} erreicht werden.
 
 	\subsubsection*{2. Versuch}
         							
@@ -92,4 +100,4 @@ def test_move_Altweibersommer_to_gruop_0(learner, group_bigramm_counts, group_co
   
 		Diese Werte werden laut Liang einmal initial berechnet. Nach der Vereinigung von 2 Klassen können viele dieser Werte dann durch Additionen aktualisiert werden und nur manche müssen neu berechnet werden. 
 
-		Leider geht Liang in seiner Arbeit zwar stark auf die Komplexität aber weniger auf die konkrete Implementierung ein. In einem Versuch der Umsetzung nach Liang gelang es den Graph sowie die Tabelle \emph{L(cc')} initial zu berechnen. Nach Problemen mit der Aktualisierung der Tabelle erschien es sinnvoller auf die fertige Version von Liang zurückzugreifen. Diese ist in \emph{C++} geschrieben und verarbeitet \emph{Corpi} für welche der Code aus Versuch 1 und Versuch 2 über 5h benötigten in Sekunden. 
+		Leider geht Liang in seiner Arbeit zwar stark auf die Komplexität aber weniger auf die konkrete Implementierung ein. In einem Versuch der Umsetzung nach Liang gelang es den Graph sowie die Tabelle \emph{L(cc')} initial zu berechnen. Nach Problemen mit der Aktualisierung der Tabelle erschien es sinnvoller auf die fertige Version von Liang zurückzugreifen. Diese ist in \emph{C++} geschrieben und verarbeitet \emph{Corpora} für welche der Code aus Versuch 1 und Versuch 2 über 5h benötigten in Sekunden. 

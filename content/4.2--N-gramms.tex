@@ -36,7 +36,7 @@
     Dieses vereinfachte Modell nennt sich \emph{bigramm} Modell. Die Übergangswahrscheinlickeit von \(w_{k-1}\) nach \(w_k\) lässt sich einfach mit \autoref{eq:bigramm-prob} berechnen. Dabei handelt es sich um \parencite[Abs.  3.8, Gleichung 3.9]{nlwp:book} wieder mit angepasster Schreibweise.
         
     \begin{equation}
-       	Pr(w_k|w_{k-1}) = \frac{C(w_{k-1};w_k)}{C(w_{k-1})}
+       	Pr(w_k|w_{k-1}) = \frac{C(w_{k-1} w_k)}{C(w_{k-1})}
        	\label{eq:bigramm-prob}
     \end{equation}
     	

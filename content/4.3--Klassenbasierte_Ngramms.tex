@@ -7,14 +7,14 @@
     
     \cite{cumpatationalLinguistics:theuse} stellen drei Möglichkeiten von solchen Klassenbasierten Vorhersagen vor. \emph{predictive clustering}, \emph{conditional clustering} und \emph{combined clustering}. Zum besseren Verständniss werden diese anhand des oben erwähnten Beispielsatzes erklärt. Gao u. a. verwenden in ihren Beispielen einen anderen Satz und ein \emph{trigramm} Modell abgesehen davon sind die folgenden Formeln ihrem Artikel entnommen. 
     
-    Beim \emph{predictive clustering} wird zunächst nicht die Wahrscheinlichkeit, dass \texttt{freitag} einem anderen folgt ausgerechnet, sondern die Wahrscheinlichkeit, dass die Klasse \texttt{WOCHENTAG} dem Wort \texttt{am} folgt. Dies wird multipliziert mit der Wahrscheinlichkeit, dass \texttt{freitag} in der Gruppe \texttt{WOCHENTAG} ist und gleichzeitig dem Wort \texttt{am} folgt.
+    Beim \emph{predictive clustering} wird zunächst nicht die Wahrscheinlichkeit, dass \texttt{freitag} dem Wort \texttt{am} folgt ausgerechnet, sondern die Wahrscheinlichkeit, dass die Klasse \texttt{WOCHENTAG} dem Wort \texttt{am} folgt. Dies wird multipliziert mit der Wahrscheinlichkeit, dass \texttt{freitag} in der Gruppe \texttt{WOCHENTAG} ist und gleichzeitig dem Wort \texttt{am} folgt.
    	
      \begin{equation}
    		Pr(\texttt{freitag}|\texttt{am}) = Pr(\texttt{WOCHENTAG}|\texttt{am}) Pr(\texttt{freitag}|\texttt{am WOCHENTAG})
         \label{eq:predictive-clustering-words}
 	\end{equation}
     
-    Gao, Goodman und Miao zeigen, dass dies exakt \(Pr(\texttt{freitag}|\texttt{am})\) ist. Geht man nun davon aus, dass das \emph{bigramm} \texttt{am freitag} nicht in den Traininhgsdaten vorkommt so würde also immer noch eine Wahrscheinlichkeit von 0 für diese Kombination errechnet. Allerdings ändert sich dies, wie Gao u. a. fortführen, sobald man eine Form des \emph{smoothing} verwendet. So könnten in den Trainingsdaten Kombinationen wie \texttt{am donnerstag} oder \texttt{am sonntag} oft vorkommen. Dadurch ergäbe sich auch eine hohe Wahrscheinlichkeit \(Pr(\texttt{WOCHENTAG}|\texttt{am})\). Dank des \emph{smoothigs} wäre \(Pr(\texttt{freitag}|\texttt{am WOCHENTAG}) > 0\). So folgern Gao u. a. wird die Vorhersage dank der Klassifizierung verbessert. Ist \(c_k\) also die Klasse des Wortes \(w_k\) lässt sich dieser Ansatz wie folgt formulieren:
+    Gao, Goodman und Miao zeigen, dass dies exakt \(Pr(\texttt{freitag}|\texttt{am})\) ist. Geht man nun davon aus, dass das \emph{bigramm} \texttt{am freitag} nicht in den Traininhgsdaten vorkommt so würde also immer noch eine Wahrscheinlichkeit von 0 für diese Kombination errechnet. Allerdings ändert sich dies, wie Gao u. a. fortführen, sobald man eine Form des \emph{smoothing} verwendet. So könnten in den Trainingsdaten Kombinationen wie \texttt{am donnerstag} oder \texttt{am sonntag} oft vorkommen. Dadurch ergäbe sich auch eine hohe Wahrscheinlichkeit \(Pr(\texttt{WOCHENTAG}|\texttt{am})\). Dank des \emph{smoothigs} wäre \(Pr(\texttt{freitag}|\texttt{am WOCHENTAG}) > 0\). So folgern Gao u. a. wird die Vorhersage dank der Klassifizierung verbessert. Ist \(c_k\) die Klasse des Wortes \(w_k\) lässt sich dieser Ansatz im Allgemeinen wie folgt formulieren:
     
     \begin{equation}
    		Pr(w_k|w_{k-1}) = Pr(c_k|w_{k-1}) Pr(w_k|w_{k-1}c_k)
@@ -45,5 +45,48 @@
         \label{eq:combined-clustering-math}
 	\end{equation}
     
-    -> maybe say is some kind of smoothing    
-    -> explain buttom up algorythm
+    \subsubsection*{Brown Clustering}
+    	Um klassenbasierte Vorhersagen zu machen, müssen Worte jedoch zuerst verschiedenen Klassen zugeteilt werden. Um dies automatisiert zu lösen, muss ein Wert berechnet werden können an welchem die Qualität der erzeugten Klassifizierung gemessen werden kann. \parencite[S. 471]{cumpatationalLinguistics:classBasedNGramms} stellen dazu \autoref{eq:average-mutual-information} auf. Den daraus resultierenden Wert nennen sie \emph{average mutual information}.
+        
+        \begin{equation}
+   			\sum_{c_1c_2} Pr(c_1 c_2) log \frac{Pr(c_2|c_1)}{Pr(c_2)}
+        	\label{eq:average-mutual-information}
+		\end{equation}
+        
+        Die in der Formel enthaltenen Wahrscheinlichkeiten lassen sich durch Zählen aus dem Trainingstext ablesen. So ist laut Brown u. a. wenn \(T\) die länge des Textes ist \(Pr(c) = C(c)/T\) und \(Pr(c_2|c_1) = \frac{C(c_1 c_2)}{\sum_c C(c_1 c)}\). Bei großen Werten von \(T\) tendiert \(Pr(c_1 c_2)\) laut ihnen zu \(c_1 c_2/T\).
+        
+        Umso großer die errechnete \emph{average mutual information}, desto besser beschreibt die Klassifizierung den Trainingstext. \cite{cumpatationalLinguistics:classBasedNGramms} schreiben allerdings auf S. 472, keine Methode zu kennen mit welcher man \autoref{eq:average-mutual-information} maximieren könne. Statdessen stellen sie einen \emph{greedy algorithm} vor um Wörter zu klassifizieren.
+        
+        Dabei wird zunächst jedem Wort eine eigne Klasse zugeteilt. Daraufhin werden testweise zwei Klassen miteinader Vereinigt. Für jede mögliche Vereinigung wird die sich daraus ergebende \emph{average mutual information} berechnet. Die Vereinigung bei, der die höchste \emph{average mutual information} errechnet wird wird ausgeführt. Dies wird so lange wiederholt bis die gewünschte Anzahl an Klassen erreicht ist.
+        
+        Brown u. a. weisen darauf hin, dass nach Ende dieses Prozesses die \emph{average mutual information} weiter erhöht werden kann indem jedes Wort testweise jeder anderen Klasse zugeordnet wird und daraufhin der Klasse hinzugefügt wird bei welcher die Zuordnung die größte \emph{average mutual information} ergibt. Dieser Prozess wird so lange wiederholt bis keine optimierung mehr erreicht werden kann.
+        
+        \begin{figure}[H]
+        \centering
+        \begin{algorithm}[H]
+ 			Füge jedes Wort \(w\) eigener Klasse \(c\) hinzu. \newline
+ 			\While{C \textgreater gewünschte Anzahl an Klassen}{
+            	\ForEach{Klasse \(c_k\) aus allen Klassen}{
+                	\ForEach{Klasse \(c_i\) aus allen Klassen außer \(c_k\)}{
+                    	berechne \emph{average mutual information} nach Vereinigung von \(c_k\) und \(c_i\)
+                    }
+                }
+                Vereinige Klasssen mit bester resultierender \emph{average mutual information}
+  				
+ 			}
+            \While{\emph{average mutual information} \textgreater \emph{old average mutual information}}{
+            	Aktualisiere \emph{old average mutual information}. \newline
+                \ForEach{Wort \(w\) aus text \(T\)}{
+                	\ForEach{Klasse \(c\) aus allen Klassen}{
+                    	Füge \(w\) zu \(c\) hinzu. \newline
+                        Berechne \emph{average mutual information}.
+                    }
+                    Füge \(w\) der Klasse mit höchster resultierender \emph{average mutual information} zu.
+                    Aktualisiere \emph{average mutual information}.
+                }
+            }
+		\end{algorithm}
+        	\caption{Brown Clustering}
+        \end{figure}
+        
+        
