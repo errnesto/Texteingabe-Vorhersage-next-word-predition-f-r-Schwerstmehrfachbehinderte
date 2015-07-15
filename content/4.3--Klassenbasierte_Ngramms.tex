@@ -1,8 +1,7 @@
 \subsection{Klassenbasierte N-gramm Sprachmodelle}
 \label{sec:brownClustering}
     
-    \cite{cumpatationalLinguistics:classBasedNGramms} schlagen eine optimierung der \emph{N-gramm} Modelle vor. Sie nehmen an, dass Worte ihrer Änlichkeit nach Gruppiert werden können. \enquote{Clearly, some words are similar to other words in their meaning and syntactic function.} \parencite[S. 470]{cumpatationalLinguistics:classBasedNGramms} Zur Erleuterung nutzen sie Wochentage. So ist laut ihenen anzunehmen, dass das Wort \texttt{donnerstag} ähnliche Vorgänger hat wie das Wort \texttt{freitag}. Dies lässt sich an folgendem Satz verdeutlichen: \texttt{wir treffen uns am (donnerstag|freitag)}. 
-    
+    \cite{cumpatationalLinguistics:classBasedNGramms} schlagen eine Optimierung der \emph{N-gramm} Modelle vor. Sie nehmen an, dass Worte ihrer Ähnlichkeit nach gruppiert werden können. \enquote{Clearly, some words are similar to other words in their meaning and syntactic function.} \parencite[S. 470]{cumpatationalLinguistics:classBasedNGramms} Zur Erläuterung nutzen sie Wochentage. So ist laut ihnen anzunehmen, dass das Wort \texttt{Donnerstag} ähnliche Vorgänger hat wie das Wort \texttt{Freitag}. Dies lässt sich an folgendem Satz verdeutlichen: \texttt{Wir treffen uns am (Donnerstag|Freitag)}.
     Weiter folgern sie: \enquote{If we can successfully assign words to classes, it may be possible to make more reasonable predictions for histories that we have not previously seen by assuming that they are similar to other histories that we have seen.} \parencite[S. 471]{cumpatationalLinguistics:classBasedNGramms} In der freien Übersetzung bedeuted dies: Sofern wir Worte Klassen zuordnen können, kann es möglich sein vernünftigere Vorhersagen für unbekannte Vorgänger zu machen indem wir annehmen, dass diese Ähnlich zu bekannten Vorgängern sind.
     
     \cite{cumpatationalLinguistics:theuse} stellen drei Möglichkeiten von solchen Klassenbasierten Vorhersagen vor. \emph{predictive clustering}, \emph{conditional clustering} und \emph{combined clustering}. Zum besseren Verständniss werden diese anhand des oben erwähnten Beispielsatzes erklärt. Gao u. a. verwenden in ihren Beispielen einen anderen Satz und ein \emph{trigramm} Modell abgesehen davon sind die folgenden Formeln ihrem Artikel entnommen. 
@@ -20,6 +19,7 @@
    		Pr(w_k|w_{k-1}) = Pr(c_k|w_{k-1}) Pr(w_k|w_{k-1}c_k)
         \label{eq:predictive-clustering-math}
 	\end{equation}
+    
     
     Der Ansatz des \emph{conditional clustering} funktioniert  umgekehrt zum Ansatz des \emph{predictive clustering}. Es wird die Wahrscheinlichkeit berechnet, dass ein Wort einer bestimmten Klasse folgt.
     
